@@ -1,0 +1,29 @@
+<dblp>
+<book mdate="2002-01-03" key="books/aw/CeriF97">
+    <author>Stefano Ceri</author>
+    <author>Piero Fraternali</author>
+    <title>Designing Database Applications with Objects and Rules: The IDEA Methodology</title>
+    <publisher href="db/publishers/aw.html">Addison-Wesley</publisher>
+    <year>1997</year>
+    <isbn>0-201-40369-2</isbn>
+</book>
+<book mdate="2002-01-03" key="books/bc/BatiniCN92">
+    <author>Carlo Batini</author>
+    <author>Stefano Ceri</author>
+    <author>Shamkant B. Navathe</author>
+    <title>Conceptual Database Design: An Entity-Relationship Approach.</title>
+    <publisher>Benjamin/Cummings</publisher>
+    <year>1992</year>
+    <isbn>0-8053-0244-1</isbn>
+</book>
+<incollection mdate="2008-02-24" key="books/crc/tucker97/CeriR97">
+    <author>Stefano Ceri</author>
+    <author>Raghu Ramakrishnan</author>
+    <title>Rules in Data-Based Systems.</title>
+    <pages>1142-1157</pages>
+    <year>1997</year>
+    <crossref>books/crc/tucker1997</crossref>
+    <booktitle>The Computer Science and Engineering Handbook</booktitle>
+    <url>db/books/collections/tucker97.html#CeriR97</url>
+</incollection>
+</dblp>
