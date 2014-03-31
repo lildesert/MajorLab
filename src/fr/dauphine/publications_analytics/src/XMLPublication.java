@@ -1,5 +1,9 @@
 package fr.dauphine.publications_analytics.src;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import javax.xml.xquery.XQConnection;
 import javax.xml.xquery.XQDataSource;
 import javax.xml.xquery.XQException;
@@ -122,19 +126,6 @@ public class XMLPublication {
 		
 		return mean;
 		
-	}
-	
-	
-	public double get_mean_number_of_authors_per_publicationC(String file_name) {
-		
-		double mean = 0.0;
-		
-		double num_publications = this.get_number_of_publicationsC(file_name);
-		double num_authors = this.get_number_of_author_appearancesC(file_name);
-		
-		mean = num_authors/num_publications;
-		
-		return mean;	
 	}
 	
 	public int get_number_of_journal_articles(String file_name) {
