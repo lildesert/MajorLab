@@ -205,7 +205,7 @@ public class XMLPublication {
 		String xml_file = getClass().getResource(file_name).toExternalForm();
 		
 		String query = "for $x in doc(\"" +xml_file+ "\")/dblp " +
-				"return count(for $y in $x/books where $y/author= '" + author + "' return 1)";
+				"return count(for $y in $x/book where $y/author= \"" + author + "\" return 1)";
 				
 		System.out.println("XQuery query:"+query);
 
@@ -381,6 +381,7 @@ public class XMLPublication {
 	
 	
 	//Vincent
+	//Question 2.B
 	public double get_mean_number_of_authors_per_publicationC(String file_name) {
 		
 		double mean = 0.0;
@@ -394,6 +395,8 @@ public class XMLPublication {
 		
 	}
 	
+	//Vincent
+	//Question 1.E
 public int get_number_of_books_appearancesC(String file_name) {
 		
 		int number_of_author_appearances = 0;
@@ -430,6 +433,8 @@ public int get_number_of_books_appearancesC(String file_name) {
 	}
 
 
+//Vincent
+//Question 1.F
 public int get_number_of_chapters_appearancesC(String file_name) {
 	
 	int number_of_author_appearances = 0;
@@ -465,6 +470,8 @@ public int get_number_of_chapters_appearancesC(String file_name) {
 	
 }
 
+//Vincent
+//Question 2.B
 public int get_number_of_conferencesProcedings_per_authorsC(String file_name,String author) {
 	
 	int number_of_author_appearances = 0;
@@ -501,7 +508,8 @@ public int get_number_of_conferencesProcedings_per_authorsC(String file_name,Str
 	
 }
 	
-
+//Vincent
+//Question 2.B
 public List<String> get_list_of_authors_appearancesC(String file_name) {
 		
 	String xml_file = getClass().getResource(file_name).toExternalForm();
@@ -535,4 +543,5 @@ public List<String> get_list_of_authors_appearancesC(String file_name) {
 	
 	return listAuthor;
 }
+
 }
