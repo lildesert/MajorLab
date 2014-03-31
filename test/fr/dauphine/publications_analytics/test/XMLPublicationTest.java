@@ -132,21 +132,46 @@ public class XMLPublicationTest {
 	
 	}
 	
-	@Test
+	//@Test
 	public void Test_books_per_authorsC() throws Exception	{
 		String file_name = "dblp_curated_sample.xml";
 		XMLPublication xb = new XMLPublication();
 		List<String> listAuthor = xb.get_list_of_authors_appearancesC(file_name);
-		System.out.print("nombre d'auteur " + listAuthor.size());
 		HashMap<String,Integer> authorPublicationMap = new HashMap();
 		
 		for(int i = 0;i<listAuthor.size();i++)	{
 			authorPublicationMap.put(listAuthor.get(i), xb.get_number_of_books_per_author(file_name,listAuthor.get(i)));
 		}
-		
-		//Rod McChesney
 		for(int j = 0;j<listAuthor.size();j++)
 			System.out.println("Auteur = " + listAuthor.get(j) + " Number of book="+ authorPublicationMap.get(listAuthor.get(j)));
+	
+	}
+	
+	//@Test
+	public void Test_booksChapter_per_authorsC() throws Exception	{
+		String file_name = "dblp_curated_sample.xml";
+		XMLPublication xb = new XMLPublication();
+		List<String> listAuthor = xb.get_list_of_authors_appearancesC(file_name);
+		HashMap<String,Integer> authorPublicationMap = new HashMap();
+		for(int i = 0;i<listAuthor.size();i++)	{
+			authorPublicationMap.put(listAuthor.get(i), xb.get_number_of_bookchapters_per_author(file_name,listAuthor.get(i)));
+		}
+		for(int j = 0;j<listAuthor.size();j++)
+			System.out.println("Auteur = " + listAuthor.get(j) + " Number of book chapter="+ authorPublicationMap.get(listAuthor.get(j)));
+	
+	}
+	
+	@Test
+	public void Test_number_of_publications_per_year() throws Exception	{
+		String file_name = "dblp_curated_sample.xml";
+		XMLPublication xb = new XMLPublication();
+		List<String> listYear = xb.get_list_of_years_appearancesC(file_name);
+		HashMap<String,Integer> yearPublicationMap = new HashMap();
+		for(int i = 0;i<listYear.size();i++)	{
+			yearPublicationMap.put(listYear.get(i), xb.get_number_of_publications_per_year(file_name,listYear.get(i)));
+		}
+		for(int j = 0;j<listYear.size();j++)
+			System.out.println("AnnŽe = " + listYear.get(j) + " Number of publication="+ yearPublicationMap.get(listYear.get(j)));
 	
 	}
 	
