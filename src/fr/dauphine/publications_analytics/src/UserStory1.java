@@ -11,7 +11,7 @@ import net.sf.saxon.xqj.SaxonXQDataSource;
 public class UserStory1 {
 
 	//Question 1.A
-	public int getNumberOfPublications(String file_name) {
+	public static int getNumberOfPublications(String file_name) {
 
 		int number_of_publications = 0;
 
@@ -46,7 +46,7 @@ public class UserStory1 {
 	}
 
 	//Question 1.B
-	public int getNumberOfAuthorAppearances(String file_name) {
+	public static int getNumberOfAuthorAppearances(String file_name) {
 
 		int number_of_author_appearances = 0;
 
@@ -82,7 +82,7 @@ public class UserStory1 {
 	}
 
 	//Question 1.C
-	public int getNumberOfConferenceProcessing(String fileName) {
+	public static int getNumberOfConferenceProcessing(String fileName) {
 
 		int nbConf = 0;
 
@@ -116,7 +116,7 @@ public class UserStory1 {
 	}
 
 	//Question 1.D
-	public int getNumberOfJournalArticles(String file_name) {
+	public static int getNumberOfJournalArticles(String file_name) {
 
 		int number_of_journal_articles = 0;
 
