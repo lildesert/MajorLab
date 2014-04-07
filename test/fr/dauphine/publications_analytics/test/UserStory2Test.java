@@ -1,7 +1,5 @@
 package fr.dauphine.publications_analytics.test;
 
-import static org.junit.Assert.assertEquals;
-
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,7 +11,7 @@ public class UserStory2Test {
 
 	@Test
 	public void TestPrincipal() throws Exception {
-		
+
 		UserStory2 us2 = new UserStory2();
 
 		Question2ATest(us2);
@@ -22,100 +20,95 @@ public class UserStory2Test {
 		Question2DTest(us2);
 		Question2ETest(us2);
 	}
-	
-	//@Test
-		public void should_have_1_articles_per_author() throws Exception {
-			String file_name = "dblp_curated_sample.xml";
-			XMLPublication xb = new XMLPublication();
-			assertEquals(1, xb.get_number_of_journal_per_author(file_name, "Francesco Caruso"));
+
+	public void Question2ATest(UserStory2 us2) throws Exception {
+		String file_name = "dblp_curated_sample.xml";
+		List<String> listAuthor = us2.getAuthor(file_name);
+		System.out.print("nombre d'auteur " + listAuthor.size());
+		HashMap<String, Integer> authorPublicationMap = new HashMap();
+
+		for (int i = 0; i < listAuthor.size(); i++) {
+			authorPublicationMap.put(listAuthor.get(i), us2
+					.getNumberOfPublicationForOneAuthor(file_name,
+							listAuthor.get(i)));
 		}
-		
-		//@Test
-		public void should_have_1_books_per_author() throws Exception {
-			String file_name = "dblp_curated_sample.xml";
-			XMLPublication xb = new XMLPublication();
-			assertEquals(0, xb.get_number_of_books_per_author(file_name, "Francesco Caruso"));
+
+		for (int j = 0; j < listAuthor.size(); j++) {
+			System.out.println("Auteur = " + listAuthor.get(j)
+					+ " Number of publications ="
+					+ authorPublicationMap.get(listAuthor.get(j)));
 		}
-		
-		//@Test
-		public void should_have_1_bookchapters_per_author() throws Exception {
-			String file_name = "dblp_curated_sample.xml";
-			XMLPublication xb = new XMLPublication();
-			assertEquals(1, xb.get_number_of_bookchapters_per_author(file_name, "Lei Dang"));
+	}
+
+	public void Question2BTest(UserStory2 us2) throws Exception {
+		String file_name = "dblp_curated_sample.xml";
+		List<String> listAuthor = us2.getAuthor(file_name);
+		System.out.print("nombre d'auteur " + listAuthor.size());
+		HashMap<String, Integer> authorPublicationMap = new HashMap();
+
+		for (int i = 0; i < listAuthor.size(); i++) {
+			authorPublicationMap.put(listAuthor.get(i), us2
+					.getNumberOfConferencesProcedingsPerAuthors(file_name,
+							listAuthor.get(i)));
 		}
-		
-//		@Test
-		public void number_of_publication_for_one_authorTest() throws Exception {
-			String file_name = "dblp_curated_sample.xml";
-			XMLPublication xb = new XMLPublication();
-			assertEquals(1,
-					xb.get_number_of_publication_for_one_author(file_name, "Dale Vincent"));
-			
+
+		for (int j = 0; j < listAuthor.size(); j++)
+			System.out.println("Auteur = " + listAuthor.get(j)
+					+ " Number of conf="
+					+ authorPublicationMap.get(listAuthor.get(j)));
+
+	}
+
+	public void Question2CTest(UserStory2 us2) throws Exception {
+		String file_name = "dblp_curated_sample.xml";
+		List<String> listAuthor = us2.getAuthor(file_name);
+		System.out.print("nombre d'auteur " + listAuthor.size());
+		HashMap<String, Integer> authorPublicationMap = new HashMap();
+
+		for (int i = 0; i < listAuthor.size(); i++) {
+			authorPublicationMap.put(listAuthor.get(i), us2
+					.getNumberOfJournalArticlesPerAuthor(file_name,
+							listAuthor.get(i)));
 		}
-		
-		//@Test
-		public void getAuthorTest() throws Exception {
-			String file_name = "dblp_curated_sample.xml";
-			XMLPublication xb = new XMLPublication();
-			assertEquals(1139,
-					xb.getAuthor(file_name).size());
-			
+
+		for (int j = 0; j < listAuthor.size(); j++)
+			System.out.println("Auteur = " + listAuthor.get(j)
+					+ " Number of journal articles ="
+					+ authorPublicationMap.get(listAuthor.get(j)));
+	}
+
+	public void Question2DTest(UserStory2 us2) throws Exception {
+		String file_name = "dblp_curated_sample.xml";
+		List<String> listAuthor = us2.getAuthor(file_name);
+		HashMap<String, Integer> authorPublicationMap = new HashMap();
+
+		for (int i = 0; i < listAuthor.size(); i++) {
+			authorPublicationMap
+					.put(listAuthor.get(i),
+							us2.getNumberOfBooksPerAuthor(file_name,
+									listAuthor.get(i)));
 		}
-		
-		//@Test
-		public void should_support_multiple_conferencesProcedings_per_authorsC() throws Exception	{
-			String file_name = "dblp_curated_sample.xml";
-			XMLPublication xb = new XMLPublication();
-			List<String> listAuthor = xb.get_list_of_authors_appearancesC(file_name);
-			
-			for(int i = 0;i<listAuthor.size();i++)	{
-				System.out.println(listAuthor.get(i));
-			}
+		for (int j = 0; j < listAuthor.size(); j++)
+			System.out.println("Auteur = " + listAuthor.get(j)
+					+ " Number of book="
+					+ authorPublicationMap.get(listAuthor.get(j)));
+
+	}
+
+	public void Question2ETest(UserStory2 us2) throws Exception {
+		String file_name = "dblp_curated_sample.xml";
+		List<String> listAuthor = us2.getAuthor(file_name);
+		HashMap<String, Integer> authorPublicationMap = new HashMap();
+		for (int i = 0; i < listAuthor.size(); i++) {
+			authorPublicationMap.put(
+					listAuthor.get(i),
+					us2.getNumberOfBookchaptersPerAuthor(file_name,
+							listAuthor.get(i)));
 		}
-		
-		//@Test
-		public void Test_confProceeding_per_authorsC() throws Exception	{
-			String file_name = "dblp_curated_sample.xml";
-			XMLPublication xb = new XMLPublication();
-			List<String> listAuthor = xb.get_list_of_authors_appearancesC(file_name);
-			System.out.print("nombre d'auteur " + listAuthor.size());
-			HashMap<String,Integer> authorPublicationMap = new HashMap();
-			
-			for(int i = 0;i<listAuthor.size();i++)	{
-				authorPublicationMap.put(listAuthor.get(i), xb.get_number_of_conferencesProcedings_per_authorsC(file_name,listAuthor.get(i)));
-			}
-			
-			for(int j = 0;j<listAuthor.size();j++)
-				System.out.println("Auteur = " + listAuthor.get(j) + " Number of conf="+ authorPublicationMap.get(listAuthor.get(j)));
-		
-		}
-		
-		//@Test
-		public void Test_books_per_authorsC() throws Exception	{
-			String file_name = "dblp_curated_sample.xml";
-			XMLPublication xb = new XMLPublication();
-			List<String> listAuthor = xb.get_list_of_authors_appearancesC(file_name);
-			HashMap<String,Integer> authorPublicationMap = new HashMap();
-			
-			for(int i = 0;i<listAuthor.size();i++)	{
-				authorPublicationMap.put(listAuthor.get(i), xb.get_number_of_books_per_author(file_name,listAuthor.get(i)));
-			}
-			for(int j = 0;j<listAuthor.size();j++)
-				System.out.println("Auteur = " + listAuthor.get(j) + " Number of book="+ authorPublicationMap.get(listAuthor.get(j)));
-		
-		}
-		
-		//@Test
-		public void Test_booksChapter_per_authorsC() throws Exception	{
-			String file_name = "dblp_curated_sample.xml";
-			XMLPublication xb = new XMLPublication();
-			List<String> listAuthor = xb.get_list_of_authors_appearancesC(file_name);
-			HashMap<String,Integer> authorPublicationMap = new HashMap();
-			for(int i = 0;i<listAuthor.size();i++)	{
-				authorPublicationMap.put(listAuthor.get(i), xb.get_number_of_bookchapters_per_author(file_name,listAuthor.get(i)));
-			}
-			for(int j = 0;j<listAuthor.size();j++)
-				System.out.println("Auteur = " + listAuthor.get(j) + " Number of book chapter="+ authorPublicationMap.get(listAuthor.get(j)));
-		
-		}
+		for (int j = 0; j < listAuthor.size(); j++)
+			System.out.println("Auteur = " + listAuthor.get(j)
+					+ " Number of book chapter="
+					+ authorPublicationMap.get(listAuthor.get(j)));
+
+	}
 }

@@ -58,10 +58,10 @@ public class UserStory2 {
 		String xml_file = getClass().getResource(file_name).toExternalForm();
 
 		String query = "for $x in doc(\"" + xml_file + "\")/dblp "
-				+ "return count(for $y in $x/* where $y/author='" + author
-				+ "' return 1)";
+				+ "return count(for $y in $x/* where $y/author=\"" + author
+				+ "\" return 1)";
 
-		System.out.println("XQuery query:" + query);
+		//System.out.println("XQuery query:" + query);
 
 		try {
 			XQDataSource ds = new SaxonXQDataSource();
@@ -74,8 +74,8 @@ public class UserStory2 {
 
 			number_of_publications = seq.getInt();
 
-			System.out.println("Number of publications of is "
-					+ number_of_publications);
+			//System.out.println("Number of publications of is "
+				//	+ number_of_publications);
 
 			seq.close();
 
@@ -143,42 +143,6 @@ public class UserStory2 {
 
 		return number_of_author_appearances;
 
-	}
-
-	// Vincent
-	// Question 2.B
-	//Pas sur de garder cette méthode
-	public List<String> get_list_of_authors_appearancesC(String file_name) {
-
-		String xml_file = getClass().getResource(file_name).toExternalForm();
-
-		String query = "for $x in doc(\"" + xml_file + "\")/dblp "
-				+ "return distinct-values($x/*/author/text())";
-
-		System.out.println("XQuery query:" + query);
-
-		List<String> listAuthor = new ArrayList();
-
-		try {
-			XQDataSource ds = new SaxonXQDataSource();
-			XQConnection conn = ds.getConnection();
-			XQExpression exp = conn.createExpression();
-
-			XQSequence seq = exp.executeQuery(query);
-
-			while (seq.next()) {
-				listAuthor.add(seq.getItemAsString(null));
-			}
-
-			System.out.println("Number of authors of is " + listAuthor.size());
-
-			seq.close();
-
-		} catch (XQException err) {
-			System.out.println("Failed as expected: " + err.getMessage());
-		}
-
-		return listAuthor;
 	}
 	
 	//Question 2.C
