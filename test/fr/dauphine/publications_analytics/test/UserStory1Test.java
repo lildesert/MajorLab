@@ -11,15 +11,17 @@ public class UserStory1Test {
 	@Test
 	public void TestPrincipal() throws Exception
 	{
-		Question1ATest();
-		Question1BTest();
-		Question1CTest();
-		Question1DTest();
-		Question1ETest();
+		UserStory1 us1 = new UserStory1();
+		
+		Question1ATest(us1);
+		Question1BTest(us1);
+		Question1CTest(us1);
+		Question1DTest(us1);
+		Question1ETest(us1);
 	}
 	
-	public void Question1DTest() throws Exception {
+	public void Question1DTest(UserStory1 us1) throws Exception {
 		String file_name = "dblp_curated_sample.xml";
-		assertEquals(358, UserStory1.getNumberOfJournalArticles(file_name));
+		assertEquals(358, us1.getNumberOfJournalArticles(file_name));
 	}
 }
