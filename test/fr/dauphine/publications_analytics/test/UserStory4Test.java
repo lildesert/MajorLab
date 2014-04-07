@@ -17,10 +17,10 @@ public class UserStory4Test {
 		UserStory4 us4 = new UserStory4();
 		UserStory3 us3 = new UserStory3();
 		UserStory2 us2 = new UserStory2();
-		Question4ATest(us2, us3, us4);
-		Question4BTest(us2, us3, us4);
-		Question4CTest(us2, us3, us4);
-		Question4DTest(us2, us3, us4);
+		//Question4ATest(us2, us3, us4);
+		//Question4BTest(us2, us3, us4);
+		//Question4CTest(us2, us3, us4);
+		//Question4DTest(us2, us3, us4);
 		Question4ETest(us2, us3, us4);
 	}
 
@@ -133,7 +133,6 @@ public class UserStory4Test {
 					System.out.println("Année = " + listYear.get(j) + " Number of author who wrote a book this year ="+ yearPublicationMap.get(listYear.get(j)));
 			}
 		
-		@Test
 		public void Question4ETest(UserStory2 us2, UserStory3 us3, UserStory4 us4) throws Exception	{
 			String file_name = "dblp_curated_sample.xml";
 			List<String> listYear = us3.get_list_of_years_appearancesC(file_name);
@@ -144,17 +143,10 @@ public class UserStory4Test {
 			HashMap<String,Integer> yearPublicationMap = new HashMap();
 
 			for(int i = 0;i<listYear.size();i++)	{
-				for(int j = 0;j<listAuthor.size();j++)	{
-
 					//s'il a ecrit qlq chose cette année
-					nbPublication = us4.get_number_of_booksChapter_per_year(file_name,listYear.get(i),listAuthor.get(j));
+					nbPublication = us4.get_number_of_booksChapter_per_year(file_name,listYear.get(i));
 
-					if(nbPublication>0)
-						cptAuthor ++;
-				}	
-				nbPublication=0;
-				yearPublicationMap.put(listYear.get(i),cptAuthor);
-				cptAuthor = 0;
+				yearPublicationMap.put(listYear.get(i),nbPublication);
 			}
 			for(int j = 0;j<listYear.size();j++)
 				System.out.println("Année = " + listYear.get(j) + " Number of author who wrote a book chapter this year ="+ yearPublicationMap.get(listYear.get(j)));

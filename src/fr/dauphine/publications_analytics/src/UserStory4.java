@@ -150,15 +150,15 @@ public class UserStory4{
 	}
 
 	//Question 4.E
-	public int get_number_of_booksChapter_per_year(String file_name,String year,String author) {
+	public int get_number_of_booksChapter_per_year(String file_name,String year) {
 		
 		int number_of_year_appearances = 0;
 		
 		String xml_file = getClass().getResource(file_name).toExternalForm();
-
-		String query = "for $x in doc(\"" +xml_file+ "\")/dblp " +
-					" return count(for $y in $x/incollection where $y/year= \"" + year +
-				"\" and $y/author = \"" + author + "\" return 1)";
+		
+		String query = "for $author in distinct-values(doc(\"" +xml_file+ "\")/dblp/*/author) " +
+	            " return count(for $x in doc(\"" +xml_file+ "\")/dblp/incollection where $x/author = $author and $x/year = " + year +
+	                 " return 1)";
 
 		try{
 			XQDataSource ds = new SaxonXQDataSource();
