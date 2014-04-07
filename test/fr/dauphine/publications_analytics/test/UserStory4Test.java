@@ -17,10 +17,10 @@ public class UserStory4Test {
 		UserStory4 us4 = new UserStory4();
 		UserStory3 us3 = new UserStory3();
 		UserStory2 us2 = new UserStory2();
-		//Question4ATest(us2, us3, us4);
-		//Question4BTest(us2, us3, us4);
-		//Question4CTest(us2, us3, us4);
-		//Question4DTest(us2, us3, us4);
+		Question4ATest(us2, us3, us4);
+		Question4BTest(us2, us3, us4);
+		Question4CTest(us2, us3, us4);
+		Question4DTest(us2, us3, us4);
 		Question4ETest(us2, us3, us4);
 	}
 
@@ -35,17 +35,11 @@ public class UserStory4Test {
 			HashMap<String,Integer> yearPublicationMap = new HashMap();
 
 			for(int i = 0;i<listYear.size();i++)	{
-				for(int j = 0;j<listAuthor.size();j++)	{
-
 					//s'il a ecrit qlq chose cette annŽe
-					nbPublication = us4.get_number_of_publications_per_year(file_name,listYear.get(i),listAuthor.get(j));
+					nbPublication = us4.getNumberOfAppearancePerYear(file_name,listYear.get(i),"*");
+				
+				yearPublicationMap.put(listYear.get(i),nbPublication);
 
-					if(nbPublication>0)
-						cptAuthor ++;
-				}	
-				nbPublication=0;
-				yearPublicationMap.put(listYear.get(i),cptAuthor);
-				cptAuthor = 0;
 			}
 			for(int j = 0;j<listYear.size();j++)
 				System.out.println("AnnŽe = " + listYear.get(j) + " Number of author who wrote a publication this year ="+ yearPublicationMap.get(listYear.get(j)));
@@ -62,17 +56,14 @@ public class UserStory4Test {
 			HashMap<String,Integer> yearPublicationMap = new HashMap();
 			System.out.println("Proceedings");
 			for(int i = 0;i<listYear.size();i++)	{
-				for(int j = 0;j<listAuthor.size();j++)	{
+
 
 					//s'il a ecrit qlq chose cette annŽe
-					nbPublication = us4.get_number_of_conferenceProceedings_per_year(file_name,listYear.get(i),listAuthor.get(j));
+					nbPublication = us4.getNumberOfAppearancePerYear(file_name,listYear.get(i),"inproceedings");
 
-					if(nbPublication>0)
-						cptAuthor ++;
-				}	
-				nbPublication=0;
-				yearPublicationMap.put(listYear.get(i),cptAuthor);
-				cptAuthor = 0;
+
+				yearPublicationMap.put(listYear.get(i),nbPublication);
+
 			}
 			System.out.println("Processing ...");
 			for(int j = 0;j<listYear.size();j++)
@@ -90,17 +81,13 @@ public class UserStory4Test {
 			HashMap<String,Integer> yearPublicationMap = new HashMap();
 
 			for(int i = 0;i<listYear.size();i++)	{
-				for(int j = 0;j<listAuthor.size();j++)	{
+
 
 					//s'il a ecrit qlq chose cette annŽe
-					nbPublication = us4.get_number_of_articles_per_year(file_name,listYear.get(i),listAuthor.get(j));
+					nbPublication = us4.getNumberOfAppearancePerYear(file_name,listYear.get(i),"article");
 
-					if(nbPublication>0)
-						cptAuthor ++;
-				}	
-				nbPublication=0;
-				yearPublicationMap.put(listYear.get(i),cptAuthor);
-				cptAuthor = 0;
+				yearPublicationMap.put(listYear.get(i),nbPublication);
+
 			}
 			for(int j = 0;j<listYear.size();j++)
 				System.out.println("AnnŽe = " + listYear.get(j) + " Number of author who wrote a journal article this year ="+ yearPublicationMap.get(listYear.get(j)));
@@ -117,17 +104,11 @@ public class UserStory4Test {
 				HashMap<String,Integer> yearPublicationMap = new HashMap();
 
 				for(int i = 0;i<listYear.size();i++)	{
-					for(int j = 0;j<listAuthor.size();j++)	{
 
 						//s'il a ecrit qlq chose cette annŽe
-						nbPublication = us4.get_number_of_books_per_year(file_name,listYear.get(i),listAuthor.get(j));
+						nbPublication = us4.getNumberOfAppearancePerYear(file_name,listYear.get(i),"book");
 
-						if(nbPublication>0)
-							cptAuthor ++;
-					}	
-					nbPublication=0;
-					yearPublicationMap.put(listYear.get(i),cptAuthor);
-					cptAuthor = 0;
+					yearPublicationMap.put(listYear.get(i),nbPublication);
 				}
 				for(int j = 0;j<listYear.size();j++)
 					System.out.println("AnnŽe = " + listYear.get(j) + " Number of author who wrote a book this year ="+ yearPublicationMap.get(listYear.get(j)));
