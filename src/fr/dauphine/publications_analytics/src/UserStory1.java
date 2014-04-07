@@ -153,7 +153,7 @@ public class UserStory1 {
 
 	// Vincent
 	// Question 1.E
-	public int getNumberOfBookAppearancesC(String file_name) {
+	public int getNumberOfBookAppearances(String file_name) {
 
 		int number_of_author_appearances = 0;
 
@@ -190,7 +190,7 @@ public class UserStory1 {
 
 	// Vincent
 	// Question 1.F
-	public int getNumberOfChaptersAppearancesC(String file_name) {
+	public int getNumberOfChaptersAppearances(String file_name) {
 
 		int number_of_author_appearances = 0;
 
