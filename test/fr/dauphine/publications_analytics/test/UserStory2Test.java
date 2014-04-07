@@ -33,11 +33,10 @@ public class UserStory2Test {
 							listAuthor.get(i)));
 		}
 
-		for (int j = 0; j < listAuthor.size(); j++) {
+		for (int j = 0; j < listAuthor.size(); j++) 
 			System.out.println("Auteur = " + listAuthor.get(j)
 					+ " Number of publications ="
 					+ authorPublicationMap.get(listAuthor.get(j)));
-		}
 	}
 
 	public void Question2BTest(UserStory2 us2) throws Exception {

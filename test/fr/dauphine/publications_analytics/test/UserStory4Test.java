@@ -28,7 +28,7 @@ public class UserStory4Test {
 		public void Question4ATest(UserStory2 us2, UserStory3 us3, UserStory4 us4) throws Exception	{
 			String file_name = "dblp_curated_sample.xml";
 			List<String> listYear = us3.get_list_of_years_appearancesC(file_name);
-			List<String> listAuthor = us2.get_list_of_authors_appearancesC(file_name);
+			List<String> listAuthor = us2.getAuthor(file_name);
 			int cptAuthor = 0,nbPublication=0;
 			
 			//year:number of author
@@ -55,7 +55,7 @@ public class UserStory4Test {
 		public void Question4BTest(UserStory2 us2, UserStory3 us3, UserStory4 us4) throws Exception	{
 			String file_name = "dblp_curated_sample.xml";
 			List<String> listYear = us3.get_list_of_years_appearancesC(file_name);
-			List<String> listAuthor = us2.get_list_of_authors_appearancesC(file_name);
+			List<String> listAuthor = us2.getAuthor(file_name);
 			int cptAuthor = 0,nbPublication=0;
 			
 			//year:number of author
@@ -83,7 +83,7 @@ public class UserStory4Test {
 		public void Question4CTest(UserStory2 us2, UserStory3 us3, UserStory4 us4) throws Exception	{
 			String file_name = "dblp_curated_sample.xml";
 			List<String> listYear = us3.get_list_of_years_appearancesC(file_name);
-			List<String> listAuthor = us2.get_list_of_authors_appearancesC(file_name);
+			List<String> listAuthor = us2.getAuthor(file_name);
 			int cptAuthor = 0,nbPublication=0;
 			
 			//year:number of author
@@ -110,7 +110,7 @@ public class UserStory4Test {
 			public void Question4DTest(UserStory2 us2, UserStory3 us3, UserStory4 us4) throws Exception	{
 				String file_name = "dblp_curated_sample.xml";
 				List<String> listYear = us3.get_list_of_years_appearancesC(file_name);
-				List<String> listAuthor = us2.get_list_of_authors_appearancesC(file_name);
+				List<String> listAuthor = us2.getAuthor(file_name);
 				int cptAuthor = 0,nbPublication=0;
 				
 				//year:number of author
@@ -137,7 +137,7 @@ public class UserStory4Test {
 		public void Question4ETest(UserStory2 us2, UserStory3 us3, UserStory4 us4) throws Exception	{
 			String file_name = "dblp_curated_sample.xml";
 			List<String> listYear = us3.get_list_of_years_appearancesC(file_name);
-			List<String> listAuthor = us2.get_list_of_authors_appearancesC(file_name);
+			List<String> listAuthor = us2.getAuthor(file_name);
 			int cptAuthor = 0,nbPublication=0;
 			
 			//year:number of author
