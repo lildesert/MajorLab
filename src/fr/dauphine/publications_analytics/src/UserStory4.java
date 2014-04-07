@@ -8,9 +8,7 @@ import javax.xml.xquery.XQSequence;
 
 import net.sf.saxon.xqj.SaxonXQDataSource;
 
-public class UserStory4 {
-
-	//Vincent
+public class UserStory4{
 	//Question 4.A
 	public int get_number_of_publications_per_year(String file_name,String year,String author) {
 		
