@@ -772,18 +772,15 @@ public int get_number_of_chapter_per_year(String file_name,String year) {
 
 //Vincent
 //Question 4.A
-//TODO ?
 public int get_number_of_publications_per_year(String file_name,String year,String author) {
 	
 	int number_of_year_appearances = 0;
 	
 	String xml_file = getClass().getResource(file_name).toExternalForm();
-	
+
 	String query = "for $x in doc(\"" +xml_file+ "\")/dblp " +
-				" return count(for $y in $x/*/author where $y/year= \"" + year +
+				" return count(for $y in $x/* where $y/year= \"" + year +
 			"\" and $y/author = \"" + author + "\" return 1)";
-	
-	System.out.println("XQuery query:"+query);
 
 	try{
 		XQDataSource ds = new SaxonXQDataSource();
@@ -797,7 +794,7 @@ public int get_number_of_publications_per_year(String file_name,String year,Stri
 		
 		number_of_year_appearances = seq.getInt();
 
-		System.out.println("Number of publications for the year " + year + " is "+number_of_year_appearances);
+		//System.out.println("Number of publications for the year " + year + " is "+number_of_year_appearances);
 		
 		seq.close();
 
@@ -809,5 +806,73 @@ public int get_number_of_publications_per_year(String file_name,String year,Stri
 	
 }
 
+//Question 4.B
+public int get_number_of_conferenceProceedings_per_year(String file_name,String year,String author) {
+	
+	int number_of_year_appearances = 0;
+	
+	String xml_file = getClass().getResource(file_name).toExternalForm();
 
+	String query = "for $x in doc(\"" +xml_file+ "\")/dblp " +
+				" return count(for $y in $x/inproceedings where $y/year= \"" + year +
+			"\" and $y/author = \"" + author + "\" return 1)";
+
+	try{
+		XQDataSource ds = new SaxonXQDataSource();
+		XQConnection conn = ds.getConnection();
+		XQExpression exp = conn.createExpression();
+
+
+		XQSequence seq = exp.executeQuery(query);			
+
+		seq.next();
+		
+		number_of_year_appearances = seq.getInt();
+
+		//System.out.println("Number of publications for the year " + year + " is "+number_of_year_appearances);
+		
+		seq.close();
+
+	} catch (XQException err) {
+		System.out.println("Failed as expected: " + err.getMessage());
+	}
+	
+	return number_of_year_appearances;
+	
+}
+
+//Question 4.C
+public int get_number_of_articles_per_year(String file_name,String year,String author) {
+	
+	int number_of_year_appearances = 0;
+	
+	String xml_file = getClass().getResource(file_name).toExternalForm();
+
+	String query = "for $x in doc(\"" +xml_file+ "\")/dblp " +
+				" return count(for $y in $x/article where $y/year= \"" + year +
+			"\" and $y/author = \"" + author + "\" return 1)";
+
+	try{
+		XQDataSource ds = new SaxonXQDataSource();
+		XQConnection conn = ds.getConnection();
+		XQExpression exp = conn.createExpression();
+
+
+		XQSequence seq = exp.executeQuery(query);			
+
+		seq.next();
+		
+		number_of_year_appearances = seq.getInt();
+
+		//System.out.println("Number of publications for the year " + year + " is "+number_of_year_appearances);
+		
+		seq.close();
+
+	} catch (XQException err) {
+		System.out.println("Failed as expected: " + err.getMessage());
+	}
+	
+	return number_of_year_appearances;
+	
+}
 }

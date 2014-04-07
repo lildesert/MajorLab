@@ -86,7 +86,7 @@ public class XMLPublicationTest {
 	
 	
 	//Vincent
-	@Test
+	//@Test
 	public void should_support_multiple_books() throws Exception	{
 		String file_name = "dblp_curated_sample.xml";
 		XMLPublication xb = new XMLPublication();
@@ -95,7 +95,7 @@ public class XMLPublicationTest {
 
 	}
 	
-	@Test
+	//@Test
 	public void should_support_multiple_chapters() throws Exception	{
 		String file_name = "dblp_curated_sample.xml";
 		XMLPublication xb = new XMLPublication();
@@ -104,7 +104,7 @@ public class XMLPublicationTest {
 
 	}
 	
-	@Test
+	//@Test
 	public void should_support_multiple_conferencesProcedings_per_authorsC() throws Exception	{
 		String file_name = "dblp_curated_sample.xml";
 		XMLPublication xb = new XMLPublication();
@@ -188,7 +188,7 @@ public class XMLPublicationTest {
 			System.out.println("Année = " + listYear.get(j) + " Number of publication conference="+ yearPublicationMap.get(listYear.get(j)));
 	
 	}
-	@Test
+	//@Test
 	public void Test_number_of_journalArticles_per_year() throws Exception	{
 		String file_name = "dblp_curated_sample.xml";
 		XMLPublication xb = new XMLPublication();
@@ -201,7 +201,7 @@ public class XMLPublicationTest {
 			System.out.println("Année = " + listYear.get(j) + " Number of journal articles="+ yearPublicationMap.get(listYear.get(j)));
 	
 	}
-	@Test
+	//@Test
 	public void Test_number_of_book_per_year() throws Exception	{
 		String file_name = "dblp_curated_sample.xml";
 		XMLPublication xb = new XMLPublication();
@@ -215,30 +215,92 @@ public class XMLPublicationTest {
 	
 	}
 	
-	// TODO
-	@Test
+	//@Test
 	public void Test_number_of_author_publications_per_year() throws Exception	{
 		String file_name = "dblp_curated_sample.xml";
 		XMLPublication xb = new XMLPublication();
-
 		List<String> listYear = xb.get_list_of_years_appearancesC(file_name);
 		List<String> listAuthor = xb.get_list_of_authors_appearancesC(file_name);
-
+		int cptAuthor = 0,nbPublication=0;
+		
 		//year:number of author
 		HashMap<String,Integer> yearPublicationMap = new HashMap();
-		
+
 		for(int i = 0;i<listYear.size();i++)	{
 			for(int j = 0;j<listAuthor.size();j++)	{
-				//TODO
-				yearPublicationMap.put(listYear.get(i), xb.get_number_of_publications_per_year(file_name,listYear.get(i),listAuthor.get(j)));
-			}
+
+				//s'il a ecrit qlq chose cette année
+				nbPublication = xb.get_number_of_publications_per_year(file_name,listYear.get(i),listAuthor.get(j));
+
+				if(nbPublication>0)
+					cptAuthor ++;
+			}	
+			nbPublication=0;
+			yearPublicationMap.put(listYear.get(i),cptAuthor);
+			cptAuthor = 0;
 		}
-		
 		for(int j = 0;j<listYear.size();j++)
-			System.out.println("Année = " + listYear.get(j) + " Number of chapter="+ yearPublicationMap.get(listYear.get(j)));
-	
+			System.out.println("Année = " + listYear.get(j) + " Number of author who wrote a publication this year ="+ yearPublicationMap.get(listYear.get(j)));
 	}
+	
+	//@Test
+	public void Test_number_of_author_conferenceProceedings_per_year() throws Exception	{
+		String file_name = "dblp_curated_sample.xml";
+		XMLPublication xb = new XMLPublication();
+		List<String> listYear = xb.get_list_of_years_appearancesC(file_name);
+		List<String> listAuthor = xb.get_list_of_authors_appearancesC(file_name);
+		int cptAuthor = 0,nbPublication=0;
+		
+		//year:number of author
+		HashMap<String,Integer> yearPublicationMap = new HashMap();
+		System.out.println("Proceedings");
+		for(int i = 0;i<listYear.size();i++)	{
+			for(int j = 0;j<listAuthor.size();j++)	{
+
+				//s'il a ecrit qlq chose cette année
+				nbPublication = xb.get_number_of_conferenceProceedings_per_year(file_name,listYear.get(i),listAuthor.get(j));
+
+				if(nbPublication>0)
+					cptAuthor ++;
+			}	
+			nbPublication=0;
+			yearPublicationMap.put(listYear.get(i),cptAuthor);
+			cptAuthor = 0;
+		}
+		System.out.println("Processing ...");
+		for(int j = 0;j<listYear.size();j++)
+			System.out.println("Année = " + listYear.get(j) + " Number of author who wrote a conference proceedings this year ="+ yearPublicationMap.get(listYear.get(j)));
+	}
+	
 	@Test
+	public void Test_number_of_author_articles_per_year() throws Exception	{
+		String file_name = "dblp_curated_sample.xml";
+		XMLPublication xb = new XMLPublication();
+		List<String> listYear = xb.get_list_of_years_appearancesC(file_name);
+		List<String> listAuthor = xb.get_list_of_authors_appearancesC(file_name);
+		int cptAuthor = 0,nbPublication=0;
+		
+		//year:number of author
+		HashMap<String,Integer> yearPublicationMap = new HashMap();
+
+		for(int i = 0;i<listYear.size();i++)	{
+			for(int j = 0;j<listAuthor.size();j++)	{
+
+				//s'il a ecrit qlq chose cette année
+				nbPublication = xb.get_number_of_articles_per_year(file_name,listYear.get(i),listAuthor.get(j));
+
+				if(nbPublication>0)
+					cptAuthor ++;
+			}	
+			nbPublication=0;
+			yearPublicationMap.put(listYear.get(i),cptAuthor);
+			cptAuthor = 0;
+		}
+		for(int j = 0;j<listYear.size();j++)
+			System.out.println("Année = " + listYear.get(j) + " Number of author who wrote a journal article this year ="+ yearPublicationMap.get(listYear.get(j)));
+	}
+	
+	//@Test
 	public void Test_number_of_chapter_per_year() throws Exception	{
 		String file_name = "dblp_curated_sample.xml";
 		XMLPublication xb = new XMLPublication();
@@ -253,7 +315,7 @@ public class XMLPublicationTest {
 	}	
 	
 	//David
-	@Test
+	//@Test
 	public void conferenceProceedingNumberTest() throws Exception {
 		String file_name = "dblp_curated_sample.xml";
 		XMLPublication xb = new XMLPublication();
@@ -262,7 +324,7 @@ public class XMLPublicationTest {
 		
 	}
 	
-	@Test
+//	@Test
 	public void number_of_publication_for_one_authorTest() throws Exception {
 		String file_name = "dblp_curated_sample.xml";
 		XMLPublication xb = new XMLPublication();
@@ -271,7 +333,7 @@ public class XMLPublicationTest {
 		
 	}
 	
-	@Test
+	//@Test
 	public void getAuthorTest() throws Exception {
 		String file_name = "dblp_curated_sample.xml";
 		XMLPublication xb = new XMLPublication();
