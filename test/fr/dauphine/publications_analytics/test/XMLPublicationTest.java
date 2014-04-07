@@ -9,7 +9,6 @@ import org.junit.Test;
 import fr.dauphine.publications_analytics.src.XMLPublication;
 
 public class XMLPublicationTest {
-
 	//@Test
 	public void should_support_one_publication() throws Exception {
 		String file_name = "dblp_1.xml";
