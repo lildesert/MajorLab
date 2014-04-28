@@ -3,6 +3,7 @@ package fr.dauphine.publications_analytics.src;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.xml.xquery.XQConnection;
@@ -20,11 +21,11 @@ public class UserStory5 {
 		String xml_file = getClass().getResource(file_name).toExternalForm();
 		
 		String query = "for $x in doc(\"" +xml_file+ "\")/dblp " +
-				"return distinct-values($x/"+ typeOfPublication + "/text())";
+				"return distinct-values($x/"+ typeOfPublication + "/title/text())";
 		
 		System.out.println("XQuery query:"+query);
 		
-		List<String> listYear = new ArrayList();
+		List<String> listPublication = new ArrayList();
 
 		try{
 			XQDataSource ds = new SaxonXQDataSource();
@@ -35,31 +36,30 @@ public class UserStory5 {
 			XQSequence seq = exp.executeQuery(query);			
 
 			while(seq.next())	{
-				listYear.add(seq.getItemAsString(null));
+				listPublication.add(seq.getItemAsString(null));
 			}
-			
-			System.out.println("Number of years of is "+ listYear.size());
-			
+						
 			seq.close();
 
 		} catch (XQException err) {
 			System.out.println("Failed as expected: " + err.getMessage());
 		}
 		
-		Collections.sort(listYear);
-		return listYear;
+		Collections.sort(listPublication);
+		return listPublication;
 	}
 		
 		//Question 2.C
-		public int getNumberOfTaskPerAuthor(String file_name, String typeOfPublication) {
+		public List <Integer> getNumberOfTaskPerAuthor(String file_name, String typeOfPublication) {
 			
 			int number_of_task= 0;
-			
+			List <Integer> results = new LinkedList();
+
 			String xml_file = getClass().getResource(file_name).toExternalForm();
 			
-			String query = "for $x in doc(\"" +xml_file+ "\")/dblp " +
-					"return count(for $y in $x/author where $y/" + typeOfPublication + "  return 1)";
-					
+			String query = "for $x in doc(\"" +xml_file+ "\")/dblp/" + typeOfPublication +
+					" return count(for $y in $x/author return 1)";
+		
 			System.out.println("XQuery query:"+query);
 
 			try{
@@ -70,19 +70,17 @@ public class UserStory5 {
 		
 				XQSequence seq = exp.executeQuery(query);			
 		
-				seq.next();
-				
-				number_of_task = seq.getInt();
-		
-				System.out.println("Number of articles per author of is "+number_of_task);
-				
+				while(seq.next())	{
+					results.add(seq.getInt()); //getItemAsString(null));
+				}
+										
 				seq.close();
 		
 			} catch (XQException err) {
 				System.out.println("Failed as expected: " + err.getMessage());
 			}
 			
-			return number_of_task;
+			return results;
 			
 		}
 		

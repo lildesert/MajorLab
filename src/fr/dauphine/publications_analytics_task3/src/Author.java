@@ -19,7 +19,7 @@ public class Author {
 		return Calcul.computeAll(results);
 	}
 	
-	public void getAverageNumberJournalArticles(UserStory2 us2) throws Exception {
+	public HashMap<String, Double> getAverageNumberJournalArticles(UserStory2 us2) throws Exception {
 		String file_name = "dblp_curated_sample.xml";
 		List<String> listAuthor = us2.getAuthor(file_name);
 		List<Integer> results = new LinkedList();
@@ -27,12 +27,10 @@ public class Author {
 			results.add(us2.getNumberOfJournalArticlesPerAuthor(file_name, listAuthor.get(i)));
 		}
 		
-		double mean = Calcul.mean(results);
-		double median = Calcul.median(results);
-		double mode = Calcul.mode(results);
+		return Calcul.computeAll(results);
 	}
 	
-	public void getAverageNumberJournalArticles(UserStory2 us2) throws Exception {
+	public HashMap<String, Double> getAverageNumberConferencesProcedings(UserStory2 us2) throws Exception {
 		String file_name = "dblp_curated_sample.xml";
 		List<String> listAuthor = us2.getAuthor(file_name);
 		List<Integer> results = new LinkedList();
@@ -40,9 +38,28 @@ public class Author {
 			results.add(us2.getNumberOfConferencesProcedingsPerAuthors(file_name, listAuthor.get(i)));
 		}
 		
-		double mean = Calcul.mean(results);
-		double median = Calcul.median(results);
-		double mode = Calcul.mode(results);
+		return Calcul.computeAll(results);
 	}
-
+	
+	public HashMap<String, Double> getAverageNumberBooks(UserStory2 us2) throws Exception {
+		String file_name = "dblp_curated_sample.xml";
+		List<String> listAuthor = us2.getAuthor(file_name);
+		List<Integer> results = new LinkedList();
+		for (int i = 0; i < listAuthor.size(); i++) {
+			results.add(us2.getNumberOfBooksPerAuthor(file_name, listAuthor.get(i)));
+		}
+				
+		return Calcul.computeAll(results);
+	}
+	
+	public HashMap<String, Double> getAverageNumberBooksChapters(UserStory2 us2) throws Exception {
+		String file_name = "dblp_curated_sample.xml";
+		List<String> listAuthor = us2.getAuthor(file_name);
+		List<Integer> results = new LinkedList();
+		for (int i = 0; i < listAuthor.size(); i++) {
+			results.add(us2.getNumberOfBookchaptersPerAuthor(file_name, listAuthor.get(i)));
+		}
+			
+		return Calcul.computeAll(results);
+	}
 }
