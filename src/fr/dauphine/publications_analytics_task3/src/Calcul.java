@@ -12,7 +12,7 @@ public class Calcul {
 	    return sum / m.size();
 	}
 	
-	public static double median(List<Double> m) {
+	public static double median(List<Integer> m) {
 	    int middle = m.size()/2;
 	    if (m.size()%2 == 1) {
 	        return m.get(middle);
