@@ -24,5 +24,31 @@ public class Author {
 					+ " Number of publications ="
 					+ authorPublicationMap.get(listAuthor.get(j)));
 	}
+	
+	public void getAverageNumberJournalArticles(UserStory2 us2) throws Exception {
+		String file_name = "dblp_curated_sample.xml";
+		List<String> listAuthor = us2.getAuthor(file_name);
+		List<Integer> results = new LinkedList();
+		for (int i = 0; i < listAuthor.size(); i++) {
+			results.add(us2.getNumberOfJournalArticlesPerAuthor(file_name, listAuthor.get(i)));
+		}
+		
+		double mean = Calcul.mean(results);
+		double median = Calcul.median(results);
+		double mode = Calcul.mode(results);
+	}
+	
+	public void getAverageNumberJournalArticles(UserStory2 us2) throws Exception {
+		String file_name = "dblp_curated_sample.xml";
+		List<String> listAuthor = us2.getAuthor(file_name);
+		List<Integer> results = new LinkedList();
+		for (int i = 0; i < listAuthor.size(); i++) {
+			results.add(us2.getNumberOfConferencesProcedingsPerAuthors(file_name, listAuthor.get(i)));
+		}
+		
+		double mean = Calcul.mean(results);
+		double median = Calcul.median(results);
+		double mode = Calcul.mode(results);
+	}
 
 }
