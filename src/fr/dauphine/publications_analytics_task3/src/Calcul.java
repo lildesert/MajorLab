@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Calcul {
 	
-	public void display(HashMap<String, Double> h){
+	public static void display(HashMap<String, Double> h){
 		System.out.println("Moyenne : " + h.get("mean"));
 		System.out.println("Médiane : " + h.get("median"));
 		System.out.println("Mode : " + h.get("mode"));
@@ -16,6 +16,7 @@ public class Calcul {
 		h.put("mean", mean(l));
 		h.put("median", median(l));
 		h.put("mode", mode(l));
+		display(h);
 		return h;
 	}
 	
