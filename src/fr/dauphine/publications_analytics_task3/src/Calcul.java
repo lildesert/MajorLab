@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Calcul {
 	
-	public static double mean(List<Double> m) {
+	public static double mean(List<Integer> m) {
 	    double sum = 0;
 	    for (int i = 0; i < m.size(); i++) {
 	        sum += m.get(i);
