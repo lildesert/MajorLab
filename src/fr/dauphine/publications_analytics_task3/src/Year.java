@@ -128,7 +128,7 @@ public class Year {
 
 		for(int i = 0;i<listYear.size();i++)
 		{
-			nbAuth = us4.get_number_of_booksChapter_per_year(fileName, listYear.get(i));
+			nbAuth = us4.getNumberOfAppearancePerYear(fileName,listYear.get(i),"incollection");
 			authorForPublication.add(nbAuth);
 		}
 		

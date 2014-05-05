@@ -1,5 +1,8 @@
 package fr.dauphine.publications_analytics.src;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.xml.xquery.XQConnection;
 import javax.xml.xquery.XQDataSource;
 import javax.xml.xquery.XQException;
@@ -198,17 +201,11 @@ public class UserStory4 {
 		int number_of_year_appearances = 0;
 
 		String xml_file = getClass().getResource(file_name).toExternalForm();
-
-//		String query = "for $author in distinct-values(doc(\"" + xml_file + "\")/dblp/*/author)" 
-//				+ " return count(for $x in doc(\"" + xml_file + "\")/dblp/" + name
-//				+ " where $x/author = $author and $x/year = " + year
-//				+ " return 1)";
 		
-		String query = "for $author in distinct-values(doc(\"" + xml_file + "\")/dblp/*/author)" 
-				+ " where doc(\"" + xml_file + "\")/dblp/*/year = " + year
-				+ " return $author";
-		
-		//http://stackoverflow.com/questions/14030255/xquery-group-by-and-count
+		String query = "for $x in doc(\"" + xml_file + "\")/dblp "
+				+ " return distinct-values(for $y in $x/"+name 
+				+ " where $y/year = " + year
+				+" return $y/author/text())";
 
 		try {
 			XQDataSource ds = new SaxonXQDataSource();
@@ -217,12 +214,14 @@ public class UserStory4 {
 
 			XQSequence seq = exp.executeQuery(query);
 
+			List<String> authorList = new ArrayList<String>();;
 			while(seq.next())
 			{
-				String author = seq.getAtomicValue();
-				//number_of_year_appearances = seq.getInt();
+				authorList.add(seq.getAtomicValue());
 			}
 			seq.close();
+			
+			number_of_year_appearances = authorList.size();
 
 		} catch (XQException err) {
 			System.out.println("Failed as expected: " + err.getMessage());
