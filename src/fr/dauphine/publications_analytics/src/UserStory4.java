@@ -199,11 +199,16 @@ public class UserStory4 {
 
 		String xml_file = getClass().getResource(file_name).toExternalForm();
 
-		String query = "for $author in distinct-values(doc(\"" + xml_file
-				+ "\")/dblp/*/author) " + " return count(for $x in doc(\""
-				+ xml_file + "\")/dblp/" + name
-				+ " where $x/author = $author and $x/year = " + year
-				+ " return 1)";
+//		String query = "for $author in distinct-values(doc(\"" + xml_file + "\")/dblp/*/author)" 
+//				+ " return count(for $x in doc(\"" + xml_file + "\")/dblp/" + name
+//				+ " where $x/author = $author and $x/year = " + year
+//				+ " return 1)";
+		
+		String query = "for $author in distinct-values(doc(\"" + xml_file + "\")/dblp/*/author)" 
+				+ " where doc(\"" + xml_file + "\")/dblp/*/year = " + year
+				+ " return $author";
+		
+		//http://stackoverflow.com/questions/14030255/xquery-group-by-and-count
 
 		try {
 			XQDataSource ds = new SaxonXQDataSource();
@@ -212,17 +217,16 @@ public class UserStory4 {
 
 			XQSequence seq = exp.executeQuery(query);
 
-			seq.next();
-
-			number_of_year_appearances = seq.getInt();
-
-			// System.out.println("Number of publications for the year " + year
-			// + " is "+number_of_year_appearances);
-
+			while(seq.next())
+			{
+				String author = seq.getAtomicValue();
+				//number_of_year_appearances = seq.getInt();
+			}
 			seq.close();
 
 		} catch (XQException err) {
 			System.out.println("Failed as expected: " + err.getMessage());
+			err.printStackTrace();
 		}
 
 		return number_of_year_appearances;

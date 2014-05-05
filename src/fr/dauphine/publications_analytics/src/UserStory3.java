@@ -22,8 +22,6 @@ public class UserStory3 {
 		String query = "for $x in doc(\"" +xml_file+ "\")/dblp " +
 				"return distinct-values($x/*/year/text())";
 		
-		System.out.println("XQuery query:"+query);
-		
 		List<String> listYear = new ArrayList();
 
 		try{
@@ -37,8 +35,6 @@ public class UserStory3 {
 			while(seq.next())	{
 				listYear.add(seq.getItemAsString(null));
 			}
-			
-			System.out.println("Number of years of is "+ listYear.size());
 			
 			seq.close();
 

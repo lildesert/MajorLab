@@ -56,7 +56,7 @@ public class Year {
 		
 		result.put("mean", Calcul.mean(authorForPublication));
 		result.put("median", Calcul.median(authorForPublication));
-		result.put("modal", Calcul.mode(authorForPublication));
+		result.put("mode", Calcul.mode(authorForPublication));
 		
 		return result;
 	}
@@ -82,7 +82,7 @@ public class Year {
 		
 		result.put("mean", Calcul.mean(authorForPublication));
 		result.put("median", Calcul.median(authorForPublication));
-		result.put("modal", Calcul.mode(authorForPublication));
+		result.put("mode", Calcul.mode(authorForPublication));
 		
 		return result;
 	}
@@ -108,7 +108,7 @@ public class Year {
 		
 		result.put("mean", Calcul.mean(authorForPublication));
 		result.put("median", Calcul.median(authorForPublication));
-		result.put("modal", Calcul.mode(authorForPublication));
+		result.put("mode", Calcul.mode(authorForPublication));
 		
 		return result;
 	}
@@ -134,7 +134,7 @@ public class Year {
 		
 		result.put("mean", Calcul.mean(authorForPublication));
 		result.put("median", Calcul.median(authorForPublication));
-		result.put("modal", Calcul.mode(authorForPublication));
+		result.put("mode", Calcul.mode(authorForPublication));
 		
 		return result;
 	}
