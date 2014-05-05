@@ -38,9 +38,10 @@ public class YearTest {
 		double modeTest = 3.0; //3.0
 		
 		//Act
-		double meanResult = Year.GetAverageNumberAuthorForPublicationInAYear(fileName).get("mean");
-		double medianResult = Year.GetAverageNumberAuthorForPublicationInAYear(fileName).get("median");
-		double modeResult = Year.GetAverageNumberAuthorForPublicationInAYear(fileName).get("mode");
+		HashMap<String, Double> mapResult = Year.GetAverageNumberAuthorForPublicationInAYear(fileName);
+		double meanResult = mapResult.get("mean");
+		double medianResult = mapResult.get("median");
+		double modeResult = mapResult.get("mode");
 		
 		//Assert
 		assertEquals(meanTest, meanResult, 0);
@@ -57,9 +58,10 @@ public class YearTest {
 		double modeTest = 0.0; //3.0
 		
 		//Act
-		double meanResult = Year.GetAverageNumberAuthorForConfProceedInAYear(fileName).get("mean");
-		double medianResult = Year.GetAverageNumberAuthorForConfProceedInAYear(fileName).get("median");
-		double modeResult = Year.GetAverageNumberAuthorForConfProceedInAYear(fileName).get("mode");
+		HashMap<String, Double> mapResult = Year.GetAverageNumberAuthorForConfProceedInAYear(fileName);
+		double meanResult = mapResult.get("mean");
+		double medianResult = mapResult.get("median");
+		double modeResult = mapResult.get("mode");
 		
 		//Assert
 		assertEquals(meanTest, meanResult, 0);
@@ -76,9 +78,10 @@ public class YearTest {
 		double modeTest = 0.0; //5.0
 		
 		//Act
-		double meanResult = Year.GetAverageNumberAuthorForArticlesInAYear(fileName).get("mean");
-		double medianResult = Year.GetAverageNumberAuthorForArticlesInAYear(fileName).get("median");
-		double modeResult = Year.GetAverageNumberAuthorForArticlesInAYear(fileName).get("mode");
+		HashMap<String, Double> mapResult = Year.GetAverageNumberAuthorForArticlesInAYear(fileName);
+		double meanResult = mapResult.get("mean");
+		double medianResult = mapResult.get("median");
+		double modeResult = mapResult.get("mode");
 		
 		//Assert
 		assertEquals(meanTest, meanResult, 0);
@@ -95,9 +98,10 @@ public class YearTest {
 		double modeTest = 0.0;
 		
 		//Act
-		double meanResult = Year.GetAverageNumberAuthorForBooksInAYear(fileName).get("mean");
-		double medianResult = Year.GetAverageNumberAuthorForBooksInAYear(fileName).get("median");
-		double modeResult = Year.GetAverageNumberAuthorForBooksInAYear(fileName).get("mode");
+		HashMap<String, Double> mapResult = Year.GetAverageNumberAuthorForBooksInAYear(fileName);
+		double meanResult = mapResult.get("mean");
+		double medianResult = mapResult.get("median");
+		double modeResult = mapResult.get("mode");
 		
 		//Assert
 		assertEquals(meanTest, meanResult, 0);
@@ -114,9 +118,10 @@ public class YearTest {
 		double modeTest = 0.0; //0.0
 		
 		//Act
-		double meanResult = Year.GetAverageNumberAuthorForBookChaptersInAYear(fileName).get("mean");
-		double medianResult = Year.GetAverageNumberAuthorForBookChaptersInAYear(fileName).get("median");
-		double modeResult = Year.GetAverageNumberAuthorForBookChaptersInAYear(fileName).get("mode");
+		HashMap<String, Double> mapResult = Year.GetAverageNumberAuthorForBookChaptersInAYear(fileName);
+		double meanResult = mapResult.get("mean");
+		double medianResult = mapResult.get("median");
+		double modeResult = mapResult.get("mode");
 		
 		//Assert
 		assertEquals(meanTest, meanResult, 0);
@@ -133,9 +138,10 @@ public class YearTest {
 		double modeTest = 1.0;
 		
 		//Act
-		double meanResult = Year.getAverageNumberOfPublicationsInAYear(fileName).get("mean");
-		double medianResult = Year.getAverageNumberOfPublicationsInAYear(fileName).get("median");
-		double modeResult = Year.getAverageNumberOfPublicationsInAYear(fileName).get("mode");
+		HashMap<String, Double> mapResult = Year.getAverageNumberOfPublicationsInAYear(fileName);
+		double meanResult = mapResult.get("mean");
+		double medianResult = mapResult.get("median");
+		double modeResult = mapResult.get("mode");
 		
 		//Assert
 		assertEquals(meanTest, meanResult, 0);
@@ -152,9 +158,10 @@ public class YearTest {
 		double modeTest = 0.0;
 		
 		//Act
-		double meanResult = Year.getAverageNumberOfpublicationsConferenceInAYear(fileName).get("mean");
-		double medianResult = Year.getAverageNumberOfpublicationsConferenceInAYear(fileName).get("median");
-		double modeResult = Year.getAverageNumberOfpublicationsConferenceInAYear(fileName).get("mode");
+		HashMap<String, Double> mapResult = Year.getAverageNumberOfpublicationsConferenceInAYear(fileName);
+		double meanResult = mapResult.get("mean");
+		double medianResult = mapResult.get("median");
+		double modeResult = mapResult.get("mode");
 		
 		//Assert
 		assertEquals(meanTest, meanResult, 0);
@@ -171,9 +178,10 @@ public class YearTest {
 		double modeTest = 0.0;
 		
 		//Act
-		double meanResult = Year.getAverageNumberOfJournalArticlesInAYear(fileName).get("mean");
-		double medianResult = Year.getAverageNumberOfJournalArticlesInAYear(fileName).get("median");
-		double modeResult = Year.getAverageNumberOfJournalArticlesInAYear(fileName).get("mode");
+		HashMap<String, Double> mapResult = Year.getAverageNumberOfJournalArticlesInAYear(fileName);
+		double meanResult = mapResult.get("mean");
+		double medianResult = mapResult.get("median");
+		double modeResult = mapResult.get("mode");
 		
 		//Assert
 		assertEquals(meanTest, meanResult, 0);
@@ -190,9 +198,10 @@ public class YearTest {
 		double modeTest = 0.0;
 		
 		//Act
-		double meanResult = Year.getAverageNumberOfBookInAYear(fileName).get("mean");
-		double medianResult = Year.getAverageNumberOfBookInAYear(fileName).get("median");
-		double modeResult = Year.getAverageNumberOfBookInAYear(fileName).get("mode");
+		HashMap<String, Double> mapResult = Year.getAverageNumberOfBookInAYear(fileName);
+		double meanResult = mapResult.get("mean");
+		double medianResult = mapResult.get("median");
+		double modeResult = mapResult.get("mode");
 		
 		//Assert
 		assertEquals(meanTest, meanResult, 0);
@@ -209,9 +218,10 @@ public class YearTest {
 		double modeTest = 0.0;
 		
 		//Act
-		double meanResult = Year.getAverageNumberOfBookChapterInAYear(fileName).get("mean");
-		double medianResult = Year.getAverageNumberOfBookChapterInAYear(fileName).get("median");
-		double modeResult = Year.getAverageNumberOfBookChapterInAYear(fileName).get("mode");
+		HashMap<String, Double> mapResult = Year.getAverageNumberOfBookChapterInAYear(fileName);
+		double meanResult = mapResult.get("mean");
+		double medianResult = mapResult.get("median");
+		double modeResult = mapResult.get("mode");
 		
 		//Assert
 		assertEquals(meanTest, meanResult, 0);
