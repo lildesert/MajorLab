@@ -16,18 +16,15 @@ public class Publication {
 	
 	
 	@Test
-	public HashMap<String, Double> getAverageNumberOfAuthorsPerPublication(UserStory5 us5) throws Exception {
-		String file_name = "dblp_curated_sample.xml";
+	public HashMap<String, Double> getAverageNumberOfAuthorsPerPublication(UserStory5 us5, String file_name) throws Exception {
 		List<Integer> results = new LinkedList();
 		results = us5.getNumberOfTaskPerAuthor(file_name,"*");
 
-		
 		return Calcul.computeAll(results);
 	}
 	
 	@Test
-	public HashMap<String, Double> getAverageNumberOfAuthorsPerJournalArticle(UserStory5 us5) throws Exception {
-		String file_name = "dblp_curated_sample.xml";
+	public HashMap<String, Double> getAverageNumberOfAuthorsPerJournalArticle(UserStory5 us5, String file_name) throws Exception {
 		List<Integer> results = new LinkedList();
 		results = us5.getNumberOfTaskPerAuthor(file_name,"article");
 				
@@ -35,8 +32,7 @@ public class Publication {
 	}
 	
 	@Test
-	public HashMap<String, Double> getAverageNumberOfAuthorsPerConferenceProceeding(UserStory5 us5) throws Exception {
-		String file_name = "dblp_curated_sample.xml";
+	public HashMap<String, Double> getAverageNumberOfAuthorsPerConferenceProceeding(UserStory5 us5, String file_name) throws Exception {
 		List<Integer> results = new LinkedList();
 		results = us5.getNumberOfTaskPerAuthor(file_name,"inproceedings");
 				
@@ -44,8 +40,7 @@ public class Publication {
 	}
 	
 	@Test
-	public HashMap<String, Double> getAverageNumberOfAuthorsPerBookChapter(UserStory5 us5) throws Exception {
-		String file_name = "dblp_curated_sample.xml";
+	public HashMap<String, Double> getAverageNumberOfAuthorsPerBookChapter(UserStory5 us5, String file_name) throws Exception {
 		List<Integer> results = new LinkedList();
 		results = us5.getNumberOfTaskPerAuthor(file_name,"incollection");
 				
@@ -53,8 +48,7 @@ public class Publication {
 	}
 	
 	@Test
-	public HashMap<String, Double> getAverageNumberOfAuthorsPerBook(UserStory5 us5) throws Exception {
-		String file_name = "dblp_curated_sample.xml";
+	public HashMap<String, Double> getAverageNumberOfAuthorsPerBook(UserStory5 us5, String file_name) throws Exception {
 		List<Integer> results = new LinkedList();
 		results = us5.getNumberOfTaskPerAuthor(file_name,"book");
 				
