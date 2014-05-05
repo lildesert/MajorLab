@@ -29,7 +29,7 @@ public class AuthorTest {
 		Author author = new Author();
 		HashMap<String, Double> result = new HashMap();
 		result = author.getAverageNumberOfPublications(us2, file_name);
-		assertEquals(1.4, result.get("mean"), 0);
+		assertEquals(1.25, result.get("mean"), 0);
 		assertEquals(1.0, result.get("median"), 0);
 		assertEquals(1.0, result.get("mode"), 0);
 		
@@ -39,9 +39,9 @@ public class AuthorTest {
 		Author author = new Author();
 		HashMap<String, Double> result = new HashMap();
 		result = author.getAverageNumberJournalArticles(us2, file_name);
-		assertEquals(0, result.get("mean"), 0);
-		assertEquals(0, result.get("median"), 0);
-		assertEquals(0, result.get("mode"), 0);
+		assertEquals(0.5425, result.get("mean"), 0);
+		assertEquals(0.5, result.get("median"), 0);
+		assertEquals(0.0, result.get("mode"), 0);
 	}
 	
 	
