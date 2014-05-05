@@ -1,5 +1,7 @@
 package fr.dauphine.publications_analytics_task3.src;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -8,6 +10,7 @@ import java.util.List;
 
 import org.junit.Test;
 import fr.dauphine.publications_analytics.src.*;
+//import fr.dauphine.publications_analytics.test.hashmap;
 
 public class Publication {
 	
@@ -17,7 +20,8 @@ public class Publication {
 		String file_name = "dblp_curated_sample.xml";
 		List<Integer> results = new LinkedList();
 		results = us5.getNumberOfTaskPerAuthor(file_name,"*");
-				
+
+		
 		return Calcul.computeAll(results);
 	}
 	
