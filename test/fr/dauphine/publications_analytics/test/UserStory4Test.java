@@ -125,7 +125,7 @@ public class UserStory4Test {
 
 			for(int i = 0;i<listYear.size();i++)	{
 					//s'il a ecrit qlq chose cette annŽe
-					nbPublication = us4.get_number_of_booksChapter_per_year(file_name,listYear.get(i));
+					nbPublication = us4.getNumberOfAppearancePerYear(file_name,listYear.get(i),"incollection");
 
 				yearPublicationMap.put(listYear.get(i),nbPublication);
 			}

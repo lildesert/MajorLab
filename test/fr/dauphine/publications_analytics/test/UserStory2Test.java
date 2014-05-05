@@ -22,7 +22,7 @@ public class UserStory2Test {
 	}
 
 	public void Question2ATest(UserStory2 us2) throws Exception {
-		String file_name = "dblp_curated_sample.xml";
+		String file_name = "dblp_2.xml";
 		List<String> listAuthor = us2.getAuthor(file_name);
 		System.out.print("nombre d'auteur " + listAuthor.size());
 		HashMap<String, Integer> authorPublicationMap = new HashMap();

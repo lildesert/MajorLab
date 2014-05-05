@@ -9,6 +9,7 @@ import fr.dauphine.publications_analytics.src.UserStory4;
 
 public class Year {
 
+	//Ju
 	public static HashMap<String, Double> GetAverageNumberAuthorForPublicationInAYear(String fileName)
 	{
 		HashMap<String, Double> result = new HashMap<String, Double>();
