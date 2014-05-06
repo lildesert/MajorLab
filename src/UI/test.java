@@ -4,7 +4,15 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
+
 import java.awt.BorderLayout;
+
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class test {
 
@@ -41,8 +49,21 @@ public class test {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JButton btnNewButton = new JButton("New button");
-		frame.getContentPane().add(btnNewButton, BorderLayout.WEST);
+		JPanel panel = new JPanel();
+		frame.getContentPane().add(panel, BorderLayout.SOUTH);
+		
+		JButton btnNewButton = new JButton("Hello");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				infoBox("wesh", "Welcome");
+			}
+		});
+		panel.add(btnNewButton);
 	}
+	
+	public static void infoBox(String infoMessage, String location)
+    {
+        JOptionPane.showMessageDialog(null, infoMessage, location, JOptionPane.INFORMATION_MESSAGE);
+    }
 
 }
