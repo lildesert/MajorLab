@@ -13,8 +13,9 @@ import javax.swing.JLabel;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
-public class test {
+public class Home {
 
 	private JFrame frame;
 
@@ -25,7 +26,7 @@ public class test {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					test window = new test();
+					Home window = new Home();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +38,7 @@ public class test {
 	/**
 	 * Create the application.
 	 */
-	public test() {
+	public Home() {
 		initialize();
 	}
 
@@ -48,22 +49,27 @@ public class test {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
 		
-		JPanel panel = new JPanel();
-		frame.getContentPane().add(panel, BorderLayout.SOUTH);
-		
-		JButton btnNewButton = new JButton("Hello");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				infoBox("wesh", "Welcome");
+		JButton btnForm = new JButton("Form 1");
+		btnForm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FormRequest1 f = new FormRequest1();
+				frame.setVisible(false);
+				f.setVisible(true);
 			}
 		});
-		panel.add(btnNewButton);
+		btnForm.setBounds(175, 80, 89, 23);
+		frame.getContentPane().add(btnForm);
+		
+		JLabel lblAuthorCollaborations = new JLabel("Author Collaborations");
+		lblAuthorCollaborations.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblAuthorCollaborations.setBounds(134, 11, 172, 44);
+		frame.getContentPane().add(lblAuthorCollaborations);
 	}
 	
 	public static void infoBox(String infoMessage, String location)
     {
-        JOptionPane.showMessageDialog(null, infoMessage, location, JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, infoMessage, "InfoBox: " + location, JOptionPane.INFORMATION_MESSAGE);
     }
-
 }
