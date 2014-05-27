@@ -21,7 +21,7 @@ public class CoothorsTest {
 		Queries queries = new Queries ();
 		String author = "Stefano Ceri";
 		result = queries.getNumberOfAuthorAppearances(file_name, author);
-		System.out.println(result.get("Piero Fraternali"));
+		System.out.println(result.get("Stefano Ceri"));
 		System.out.println("taille = " + result.size());
 		//assertEquals(1, result.get("Piero Fraternali"),0);
  
