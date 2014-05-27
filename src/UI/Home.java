@@ -8,16 +8,23 @@ import java.awt.EventQueue;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JButton;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import fr.dauphine.publications_analytics.src.UserStory2;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.Font;
+import java.util.List;
 
 public class Home implements ItemListener {
 
@@ -34,7 +41,7 @@ public class Home implements ItemListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					createAndShowGUI();
+					Home window = new Home();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -52,13 +59,13 @@ public class Home implements ItemListener {
      * this method should be invoked from the
      * event dispatch thread.
      */
-    private static void createAndShowGUI() {
+    private void createAndShowGUI(Home window) {
         //Create and set up the window.
-        JFrame frame = new JFrame("CardLayoutDemo");
+        frame = new JFrame("CardLayoutDemo");
+        frame.setBounds(100, 100, 450, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          
         //Create and set up the content pane.
-        Home window = new Home();
         window.addComponentToPane(frame.getContentPane());
          
         //Display the window.
@@ -69,6 +76,7 @@ public class Home implements ItemListener {
     public void addComponentToPane(Container pane) {
         //Put the JComboBox in a JPanel to get a nicer look.
         JPanel comboBoxPane = new JPanel(); //use FlowLayout
+        comboBoxPane.setBounds(100, 100, 450, 300);
         String comboBoxItems[] = { BUTTONPANEL, TEXTPANEL };
         JComboBox cb = new JComboBox(comboBoxItems);
         cb.setEditable(false);
@@ -76,14 +84,15 @@ public class Home implements ItemListener {
         comboBoxPane.add(cb);
          
         //Create the "cards".
-        FormRequest2 card1 = new FormRequest2();
+        JPanel formRequest1 = new JPanel();
+        FillFormRequest1(formRequest1);
         
         JPanel card2 = new JPanel();
         card2.add(new JTextField("TextField", 20));
          
         //Create the panel that contains the "cards".
         cards = new JPanel(new CardLayout());
-        cards.add(card1, BUTTONPANEL);
+        cards.add(formRequest1, BUTTONPANEL);
         cards.add(card2, TEXTPANEL);
          
         pane.add(comboBoxPane, BorderLayout.PAGE_START);
@@ -94,7 +103,7 @@ public class Home implements ItemListener {
 	 * Create the application.
 	 */
 	public Home() {
-		initialize();
+		createAndShowGUI(this);
 	}
 
 	/**
@@ -127,4 +136,35 @@ public class Home implements ItemListener {
     {
         JOptionPane.showMessageDialog(null, infoMessage, "InfoBox: " + location, JOptionPane.INFORMATION_MESSAGE);
     }
+	
+	public void FillFormRequest1(JPanel contentPane) {
+
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(null);
+		
+		UserStory2 us2 = new UserStory2();
+		List<String> authList = us2.getAuthor("dblp_2.xml");
+		
+		JButton btnLancerRequte = new JButton("Lancer Requ\u00EAte");
+		btnLancerRequte.setBounds(145, 101, 132, 23);
+		contentPane.add(btnLancerRequte);
+		
+		JLabel lblF = new JLabel("FormRequest 1");
+		lblF.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblF.setHorizontalAlignment(SwingConstants.CENTER);
+		lblF.setBounds(167, 11, 89, 23);
+		contentPane.add(lblF);
+		
+		JList lbCoAuthor = new JList();
+		lbCoAuthor.setBounds(301, 56, 123, 147);
+		contentPane.add(lbCoAuthor);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 56, 132, 147);
+		contentPane.add(scrollPane);
+		
+		JList lbAuthor = new JList(authList.toArray());
+		scrollPane.setViewportView(lbAuthor);
+		lbAuthor.setValueIsAdjusting(true);
+	}
 }
