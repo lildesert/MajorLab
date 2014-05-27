@@ -1,8 +1,6 @@
 package fr.dauphine.publications_analytics.test;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import javax.xml.xquery.XQConnection;
 import javax.xml.xquery.XQDataSource;

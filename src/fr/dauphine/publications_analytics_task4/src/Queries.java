@@ -1,6 +1,8 @@
 package fr.dauphine.publications_analytics_task4.src;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.xml.xquery.XQConnection;
 import javax.xml.xquery.XQDataSource;
@@ -16,9 +18,9 @@ public class Queries {
 
 		String xml_file = getClass().getResource(file_name).toExternalForm();
 		
-		String query = "for $x in doc(\"" + xml_file + "\")/dblp where $x/author = " + authorName
-				+ " return distinct-values(for $y in $x/author where $y/author != " + authorName 
-				+" return $y/author/text())";
+		String query = "for $x in doc(\"" + xml_file + "\")/dblp where $x/*/author = \"" + authorName
+				+ "\" return distinct-values($x/*/author/text())";
+		
 		
 		System.out.println("XQuery query:" + query);
 		HashMap<String, Integer> listAuthor = new HashMap();
@@ -31,14 +33,22 @@ public class Queries {
 			
 			XQExpression exp2 = conn.createExpression();
 			XQSequence seq2;
-			
+			String coauthor;
 			while(seq.next())	{
-			
-				String query2 = "for $x in doc(\"" + xml_file + "\")/dblp where $x/author = " + seq.getAtomicValue()
-						+ " return distinct-values(for $y in $x/author "
-						+ " return $y/author/text())";
+				coauthor = seq.getAtomicValue();
+				String query2 = "for $x in doc(\"" + xml_file + "\")/dblp where $x/*/author = \"" + coauthor
+						+ "\" return count(for $y in $x/* where $y/author != \"" +
+						coauthor +
+						"\" return 1)";
+						//"  return distinct-values($x/*/author/text())";
+				
+				/*List<String> listCocoAuthor = new LinkedList();
+
 				seq2 = exp.executeQuery(query2);
-				listAuthor.put(seq.getAtomicValue(), seq2.count());
+				seq2.next();
+				System.out.println("nombre = " + seq2.getInt());
+				listAuthor.put(coauthor, listCocoAuthor.size());*/
+				System.out.println("Author = " +coauthor );
 			}
 			seq.close();
 			
