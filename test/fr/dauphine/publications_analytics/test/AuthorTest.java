@@ -1,6 +1,7 @@
 package fr.dauphine.publications_analytics.test;
 
 import static org.junit.Assert.*;
+//TEST
 
 import java.util.HashMap;
 
