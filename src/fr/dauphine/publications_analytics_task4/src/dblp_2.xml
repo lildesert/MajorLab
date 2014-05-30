@@ -1,0 +1,65 @@
+<dblp>
+<book mdate="2002-01-03" key="books/aw/CeriF97">
+    <author>Stefano Ceri</author>
+    <author>Piero Fraternali</author>
+    <title>Designing Database Applications with Objects and Rules: The IDEA Methodology</title>
+    <publisher href="db/publishers/aw.html">Addison-Wesley</publisher>
+    <year>1997</year>
+    <isbn>0-201-40369-2</isbn>
+</book>
+<incollection mdate="2008-02-24" key="books/crc/tucker97/CeriR97">
+    <author>Stefano Ceri</author>
+    <author>Raghu Ramakrishnan</author>
+    <title>Rules in Data-Based Systems.</title>
+    <pages>1142-1157</pages>
+    <year>1997</year>
+    <crossref>books/crc/tucker1997</crossref>
+    <booktitle>The Computer Science and Engineering Handbook</booktitle>
+    <url>db/books/collections/tucker97.html#CeriR97</url>
+</incollection>
+<inproceedings mdate="2012-10-08" key="conf/IEEEscc/YaoTNCZRG12">
+    <author>Jinhui Yao</author>
+    <author>Wei Tan</author>
+    <author>Surya Nepal</author>
+    <author>Shiping Chen</author>
+    <author>Jia Zhang</author>
+    <author>David De Roure</author>
+    <author>Carole A. Goble</author>
+    <title>ReputationNet: A Reputation Engine to Enhance ServiceMap by Recommending Trusted Services.</title>
+    <pages>454-461</pages>
+    <year>2012</year>
+    <booktitle>IEEE SCC</booktitle>
+    <ee>http://dx.doi.org/10.1109/SCC.2012.73</ee>
+    <crossref>conf/IEEEscc/2012</crossref>
+    <url>db/conf/IEEEscc/scc2012.html#YaoTNCZRG12</url>
+</inproceedings>
+<article mdate="2011-06-29" key="journals/bioinformatics/StevensGBB01">
+    <author>Robert Stevens</author>
+    <author>Carole A. Goble</author>
+    <author>Patricia G. Baker</author>
+    <author>Andy Brass</author>
+    <title>A classification of tasks in bioinformatics.</title>
+    <pages>180-188</pages>
+    <year>2001</year>
+    <volume>17</volume>
+    <journal>Bioinformatics</journal>
+    <number>1</number>
+    <url>db/journals/bioinformatics/bioinformatics17.html#StevensGBB01</url>
+    <ee>http://dx.doi.org/10.1093/bioinformatics/17.2.180</ee>
+</article>
+<article mdate="2006-11-02" key="journals/bioinformatics/WolstencroftMSTB05">
+    <author>Katy Wolstencroft</author>
+    <author>Robin McEntire</author>
+    <author>Robert Stevens</author>
+    <author>Lydia Tabernero</author>
+    <author>Andy Brass</author>
+    <title>Constructing ontology-driven protein family databases.</title>
+    <pages>1685-1692</pages>
+    <year>2005</year>
+    <volume>21</volume>
+    <journal>Bioinformatics</journal>
+    <number>8</number>
+    <ee>http://dx.doi.org/10.1093/bioinformatics/bti158</ee>
+    <url>db/journals/bioinformatics/bioinformatics21.html#WolstencroftMSTB05</url>
+</article>
+</dblp>

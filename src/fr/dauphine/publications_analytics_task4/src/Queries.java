@@ -3,6 +3,7 @@ package fr.dauphine.publications_analytics_task4.src;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map.Entry;
 
 import javax.xml.xquery.XQConnection;
 import javax.xml.xquery.XQDataSource;
@@ -13,6 +14,19 @@ import javax.xml.xquery.XQSequence;
 import net.sf.saxon.xqj.SaxonXQDataSource;
 
 public class Queries {
+	
+	private HashMap<String, Integer> display(HashMap<String, Integer> listAuthors, String authorName){
+		System.out.println(authorName + " (" + listAuthors.get(authorName) + ") : ");
+		for (Entry<String, Integer> e : listAuthors.entrySet()) {
+		    String key = e.getKey();
+		    Object value = e.getValue();
+		    if (!key.equals(authorName) ){
+		    	System.out.println(e.getKey() + " (" + e.getValue() + ")");
+		    }
+		}	
+		return listAuthors;
+	}
+	
 	//Question 1
 	public HashMap<String, Integer> getNumberOfAuthorAppearances(String file_name,String authorName) {
 
@@ -52,7 +66,7 @@ public class Queries {
 			System.out.println("Failed as expected: " + err.getMessage());
 		}
 
-		return listAuthor;
+		return display(listAuthor, authorName);
 
 	}
 
