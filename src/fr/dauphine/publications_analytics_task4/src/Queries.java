@@ -1,5 +1,6 @@
 package fr.dauphine.publications_analytics_task4.src;
 
+import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,6 +12,7 @@ import javax.xml.xquery.XQException;
 import javax.xml.xquery.XQExpression;
 import javax.xml.xquery.XQSequence;
 
+import UI.UISingleton;
 import net.sf.saxon.xqj.SaxonXQDataSource;
 
 public class Queries {
@@ -30,7 +32,16 @@ public class Queries {
 	//Question 1
 	public HashMap<String, Integer> getNumberOfAuthorAppearances(String file_name,String authorName) {
 
-		String xml_file = getClass().getResource(file_name).toExternalForm();
+		String xml_file = "";
+		try {
+			xml_file = UISingleton.getInstance().getXmlFile().toURI().toURL().toExternalForm();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch (NullPointerException pe) {
+			xml_file = getClass().getResource(file_name).toExternalForm();
+		}
 		
 		String query = "for $x in doc(\"" +xml_file+ "\")/dblp " + 
 		"return distinct-values(for $y in $x/* where $y/author= \"" + authorName + 
@@ -73,7 +84,16 @@ public class Queries {
 	//Question 2
 	public HashMap<String, Integer> getNumberOfAuthorAppearancesPerYear(String file_name,String authorName, String year1, String year2) {
 		String query ="";
-		String xml_file = getClass().getResource(file_name).toExternalForm();
+		String xml_file = "";
+		try {
+			xml_file = UISingleton.getInstance().getXmlFile().toURI().toURL().toExternalForm();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch (NullPointerException pe) {
+			xml_file = getClass().getResource(file_name).toExternalForm();
+		}
 		if(year1 == year2){
 			 query = "for $x in doc(\"" +xml_file+ "\")/dblp " + 
 			"return distinct-values(for $y in $x/* where $y/author= \"" + authorName + "\" and $y/year= \"" + year1 + 
@@ -122,7 +142,16 @@ public class Queries {
 	//Question 3
 	//See names of the co authors for each author in the publication set for different publication types (par publication type)
 	public HashMap<String, Integer> getNumberOfAuthorAppearancesPerPublicationType(String file_name,String authorName, String type) {
-		String xml_file = getClass().getResource(file_name).toExternalForm();
+		String xml_file = "";
+		try {
+			xml_file = UISingleton.getInstance().getXmlFile().toURI().toURL().toExternalForm();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch (NullPointerException pe) {
+			xml_file = getClass().getResource(file_name).toExternalForm();
+		}
 
 		String query = "for $x in doc(\"" +xml_file+ "\")/dblp " + 
 				"return distinct-values(for $y in $x/" + type + " where $y/author= \"" + authorName + 

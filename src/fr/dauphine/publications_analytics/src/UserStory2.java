@@ -1,5 +1,6 @@
 package fr.dauphine.publications_analytics.src;
 
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,6 +11,7 @@ import javax.xml.xquery.XQException;
 import javax.xml.xquery.XQExpression;
 import javax.xml.xquery.XQSequence;
 
+import UI.UISingleton;
 import net.sf.saxon.xqj.SaxonXQDataSource;
 
 public class UserStory2 {
@@ -18,7 +20,16 @@ public class UserStory2 {
 
 		List<String> authors = new ArrayList<String>();
 
-		String xml_file = getClass().getResource(file_name).toExternalForm();
+		String xml_file = "";
+		try {
+			xml_file = UISingleton.getInstance().getXmlFile().toURI().toURL().toExternalForm();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch (NullPointerException pe) {
+			xml_file = getClass().getResource(file_name).toExternalForm();
+		}
 
 		String query = "for $x in doc(\"" + xml_file + "\")/dblp "
 				+ "return distinct-values($x/*/author/text())";
@@ -55,7 +66,16 @@ public class UserStory2 {
 
 		int number_of_publications = 0;
 
-		String xml_file = getClass().getResource(file_name).toExternalForm();
+		String xml_file = "";
+		try {
+			xml_file = UISingleton.getInstance().getXmlFile().toURI().toURL().toExternalForm();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch (NullPointerException pe) {
+			xml_file = getClass().getResource(file_name).toExternalForm();
+		}
 
 		String query = "for $x in doc(\"" + xml_file + "\")/dblp "
 				+ "return count(for $y in $x/* where $y/author=\"" + author
@@ -89,28 +109,21 @@ public class UserStory2 {
 
 	// Vincent
 	// Question 2.B
-	//Pas sur de garder
-	/*public double get_mean_number_of_authors_per_publicationC(String file_name) {
-
-		double mean = 0.0;
-
-		double num_publications = this.get_number_of_publicationsC(file_name);
-		double num_authors = this.get_number_of_author_appearancesC(file_name);
-
-		mean = num_authors / num_publications;
-
-		return mean;
-
-	}*/
-
-	// Vincent
-	// Question 2.B
 	public int getNumberOfConferencesProcedingsPerAuthors(
 			String file_name, String author) {
 
 		int number_of_author_appearances = 0;
 
-		String xml_file = getClass().getResource(file_name).toExternalForm();
+		String xml_file = "";
+		try {
+			xml_file = UISingleton.getInstance().getXmlFile().toURI().toURL().toExternalForm();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch (NullPointerException pe) {
+			xml_file = getClass().getResource(file_name).toExternalForm();
+		}
 
 		String query = "for $x in doc(\""
 				+ xml_file
@@ -150,7 +163,16 @@ public class UserStory2 {
 		
 		int number_of_journal_per_author = 0;
 		
-		String xml_file = getClass().getResource(file_name).toExternalForm();
+		String xml_file = "";
+		try {
+			xml_file = UISingleton.getInstance().getXmlFile().toURI().toURL().toExternalForm();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch (NullPointerException pe) {
+			xml_file = getClass().getResource(file_name).toExternalForm();
+		}
 		
 		String query = "for $x in doc(\"" +xml_file+ "\")/dblp " +
 				"return count(for $y in $x/article where $y/author= '" + author + "' return 1)";
@@ -186,7 +208,16 @@ public class UserStory2 {
 		
 		int number_of_books_per_author = 0;
 		
-		String xml_file = getClass().getResource(file_name).toExternalForm();
+		String xml_file = "";
+		try {
+			xml_file = UISingleton.getInstance().getXmlFile().toURI().toURL().toExternalForm();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch (NullPointerException pe) {
+			xml_file = getClass().getResource(file_name).toExternalForm();
+		}
 		
 		String query = "for $x in doc(\"" +xml_file+ "\")/dblp " +
 				"return count(for $y in $x/book where $y/author= \"" + author + "\" return 1)";
@@ -222,7 +253,16 @@ public class UserStory2 {
 		
 		int number_of_bookchapters_per_author = 0;
 		
-		String xml_file = getClass().getResource(file_name).toExternalForm();
+		String xml_file = "";
+		try {
+			xml_file = UISingleton.getInstance().getXmlFile().toURI().toURL().toExternalForm();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch (NullPointerException pe) {
+			xml_file = getClass().getResource(file_name).toExternalForm();
+		}
 		
 		String query = "for $x in doc(\"" +xml_file+ "\")/dblp " +
 				"return count(for $y in $x/incollection where $y/author= \"" + author + "\" return 1)";
