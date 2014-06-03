@@ -248,7 +248,7 @@ public class FormRequest1 extends JFrame {
 					{
 						JOptionPane
 						.showMessageDialog(contentPane,
-								"Please enter a filename");
+								"Please, enter a filename");
 					}
 				}
 				else
