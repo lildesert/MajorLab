@@ -4,17 +4,23 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.FileSystemView;
 
-public class Home extends JFrame {
+public class Home extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
+	private JButton openButton;
+	private JFileChooser fc;
+	private JLabel lblFile;
 
 	/**
 	 * Launch the application.
@@ -57,19 +63,26 @@ public class Home extends JFrame {
 				}
 			}
 		});
-		btnFormrequest.setBounds(138, 108, 170, 23);
+		btnFormrequest.setBounds(138, 172, 170, 23);
 		contentPane.add(btnFormrequest);
+		
+		openButton = new JButton("Choose XML file...");
+		openButton.addActionListener(this);
+		openButton.setBounds(10, 61, 140, 23);
 
-		JButton btnChangeXmlSource = new JButton("Choose xml source");
-		btnChangeXmlSource.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				setVisible(false);
-				ChangeXmlSource f = new ChangeXmlSource();
-				f.setVisible(true);
-			}
-		});
-		btnChangeXmlSource.setBounds(138, 63, 170, 23);
-		contentPane.add(btnChangeXmlSource);
+		lblFile = new JLabel();
+		lblFile.setText(SetFileName(UISingleton.getInstance().getXmlFile()));
+		lblFile.setBounds(20, 95, 342, 23);
+
+		contentPane.add(openButton);
+		contentPane.add(lblFile);
+		FileSystemView vueSysteme = FileSystemView.getFileSystemView();
+		// récupération des répertoires
+		File defaut = vueSysteme.getDefaultDirectory();
+
+		fc = new JFileChooser(defaut);
+		fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		contentPane.add(fc);
 
 		JLabel lblPublicationAnalyticsMenu = new JLabel(
 				"Publication Analytics Menu");
@@ -77,5 +90,32 @@ public class Home extends JFrame {
 				Font.PLAIN, 15));
 		lblPublicationAnalyticsMenu.setBounds(138, 11, 184, 29);
 		contentPane.add(lblPublicationAnalyticsMenu);
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+
+		// Handle open button action.
+		if (e.getSource() == openButton) {
+			int returnVal = fc.showOpenDialog(Home.this);
+
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				UISingleton.getInstance().setXmlFile(fc.getSelectedFile());
+				lblFile.setText(SetFileName(UISingleton.getInstance().getXmlFile()));
+			}
+		}
+	}
+	
+	private String SetFileName(File f)
+	{
+		String fileName = "File used : ";
+		if (f != null) {
+			fileName += UISingleton.getInstance().getXmlFile().getName();
+		}
+		else
+		{
+			fileName += "None";
+		}
+		
+		return fileName;
 	}
 }

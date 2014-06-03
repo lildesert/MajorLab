@@ -5,6 +5,7 @@ import java.awt.Window;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.ListModel;
 import javax.swing.border.EmptyBorder;
@@ -24,9 +25,13 @@ import java.awt.Font;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class FormRequest1 extends JFrame {
 
@@ -34,6 +39,9 @@ public class FormRequest1 extends JFrame {
 	private JList lbCoAuthor;
 	private JList lbAuthor;
 	private DefaultListModel dlmCoAuth;
+	private JTextField tbYearStart;
+	private JTextField tbYearEnd;
+	private JComboBox cbType;
 
 	/**
 	 * Launch the application.
@@ -55,7 +63,7 @@ public class FormRequest1 extends JFrame {
 	 * Create the frame.
 	 */
 	public FormRequest1() {
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 613, 397);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -69,7 +77,7 @@ public class FormRequest1 extends JFrame {
 				h.setVisible(true);
 			}
 		});
-		btnRetour.setBounds(335, 228, 89, 23);
+		btnRetour.setBounds(498, 325, 89, 23);
 		contentPane.add(btnRetour);
 
 		UserStory2 us2 = new UserStory2();
@@ -79,10 +87,47 @@ public class FormRequest1 extends JFrame {
 		btnLancerRequte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dlmCoAuth.clear();
+				
 				String authSelected = lbAuthor.getSelectedValue().toString();
-				HashMap<String, Integer> result = new HashMap();
+				
 				Queries queries = new Queries();
-				result = queries.getNumberOfAuthorAppearances("", authSelected);
+				Map<String, Integer> result = new HashMap<String, Integer>();
+				
+				if(!tbYearStart.getText().isEmpty() && !tbYearEnd.getText().isEmpty())
+				{
+					if(cbType.getSelectedIndex() == 0)
+					{
+						result = queries.getNumberOfAuthorAppearancesPerYear("", authSelected, tbYearStart.getText(), tbYearEnd.getText());
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(contentPane,
+								"You have to choose between Year and Publication type params");
+						tbYearEnd.setText("");
+						tbYearStart.setText("");
+						cbType.setSelectedIndex(0);
+					}
+				}
+				else if(cbType.getSelectedIndex() != 0)
+				{
+					if(tbYearStart.getText().isEmpty() && tbYearEnd.getText().isEmpty())
+					{
+						result = queries.getNumberOfAuthorAppearancesPerPublicationType("", authSelected, cbType.getSelectedItem().toString());
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(contentPane,
+								"You have to choose between Year and Publication type params");
+						tbYearEnd.setText("");
+						tbYearStart.setText("");
+						cbType.setSelectedIndex(0);
+					}
+				}
+				else
+				{
+					result = queries.getNumberOfAuthorAppearances("", authSelected);
+				}			
+				
 				for (Entry<String, Integer> e : result.entrySet()) {
 					String key = e.getKey();
 					Object value = e.getValue();
@@ -93,33 +138,69 @@ public class FormRequest1 extends JFrame {
 				}
 			}
 		});
-		btnLancerRequte.setBounds(152, 100, 132, 23);
+		btnLancerRequte.setBounds(229, 258, 132, 23);
 		contentPane.add(btnLancerRequte);
 
 		JLabel lblF = new JLabel("FormRequest 1");
 		lblF.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblF.setHorizontalAlignment(SwingConstants.CENTER);
-		lblF.setBounds(167, 11, 89, 23);
+		lblF.setBounds(249, 11, 89, 23);
 		contentPane.add(lblF);
 
 		dlmCoAuth = new DefaultListModel();
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 56, 132, 147);
+		scrollPane.setBounds(23, 56, 145, 147);
 		contentPane.add(scrollPane);
-
-		lbAuthor = new JList(authList.toArray());
-		scrollPane.setViewportView(lbAuthor);
-		lbAuthor.setValueIsAdjusting(true);
+		
+				lbAuthor = new JList(authList.toArray());
+				scrollPane.setViewportView(lbAuthor);
+				lbAuthor.setValueIsAdjusting(true);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(355, 181, -78, -56);
 		contentPane.add(scrollPane_1);
 		
 		JScrollPane scrollPane_2 = new JScrollPane();
-		scrollPane_2.setBounds(304, 56, 120, 147);
+		scrollPane_2.setBounds(430, 56, 145, 147);
 		contentPane.add(scrollPane_2);
 		lbCoAuthor = new JList(dlmCoAuth);
 		scrollPane_2.setViewportView(lbCoAuthor);
+		
+		JLabel lblParamtres = new JLabel("Params :");
+		lblParamtres.setBounds(194, 56, 109, 32);
+		contentPane.add(lblParamtres);
+		
+		JLabel lblAnne = new JLabel("Years");
+		lblAnne.setBounds(278, 88, 104, 14);
+		contentPane.add(lblAnne);
+		
+		tbYearStart = new JTextField();
+		tbYearStart.setBounds(178, 125, 86, 20);
+		contentPane.add(tbYearStart);
+		tbYearStart.setColumns(10);
+		
+		tbYearEnd = new JTextField();
+		tbYearEnd.setText("");
+		tbYearEnd.setBounds(334, 125, 86, 20);
+		contentPane.add(tbYearEnd);
+		tbYearEnd.setColumns(10);
+		
+		JLabel lblStartYear = new JLabel("Start year :");
+		lblStartYear.setBounds(178, 109, 86, 14);
+		contentPane.add(lblStartYear);
+		
+		JLabel lblEndYear = new JLabel("End year :");
+		lblEndYear.setBounds(334, 109, 86, 14);
+		contentPane.add(lblEndYear);
+		
+		JLabel lblType = new JLabel("Publication type");
+		lblType.setBounds(249, 156, 107, 14);
+		contentPane.add(lblType);
+		
+		cbType = new JComboBox();
+		cbType.setModel(new DefaultComboBoxModel(new String[] {"", "inproceedings", "article", "book", "incollection"}));
+		cbType.setBounds(216, 183, 155, 20);
+		contentPane.add(cbType);
 	}
 }
