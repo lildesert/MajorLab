@@ -1,11 +1,13 @@
 package UI;
 
 import java.io.File;
+import java.util.HashMap;
 
 public class UISingleton {
 
 	private File xmlFile;
 	private String coAuthSelected;
+	private HashMap<String, Integer> mapCoAuth;
 
 	private UISingleton() {
 	}
@@ -33,5 +35,13 @@ public class UISingleton {
 
 	public void setCoAuthSelected(String coAuthSelected) {
 		this.coAuthSelected = coAuthSelected;
+	}
+	
+	public HashMap<String, Integer> getMapCoAuth() {
+		return mapCoAuth;
+	}
+
+	public void setMapCoAuth(HashMap<String, Integer> mapCoAuth) {
+		this.mapCoAuth = mapCoAuth;
 	}
 }

@@ -21,6 +21,7 @@ import javax.swing.JList;
 import javax.swing.SwingConstants;
 
 import fr.dauphine.publications_analytics.src.UserStory2;
+import fr.dauphine.publications_analytics_task4.src.CSVMaker;
 import fr.dauphine.publications_analytics_task4.src.Queries;
 
 import java.awt.Font;
@@ -44,6 +45,7 @@ public class FormRequest1 extends JFrame {
 	private JTextField tbYearStart;
 	private JTextField tbYearEnd;
 	private JComboBox cbType;
+	private JTextField tbCSV;
 
 	/**
 	 * Launch the application.
@@ -93,7 +95,7 @@ public class FormRequest1 extends JFrame {
 				String authSelected = lbAuthor.getSelectedValue().toString();
 
 				Queries queries = new Queries();
-				Map<String, Integer> result = new HashMap<String, Integer>();
+				HashMap<String, Integer> result = new HashMap<String, Integer>();
 
 				if (!tbYearStart.getText().isEmpty()
 						&& !tbYearEnd.getText().isEmpty()) {
@@ -129,6 +131,8 @@ public class FormRequest1 extends JFrame {
 							authSelected);
 				}
 
+				UISingleton.getInstance().setMapCoAuth(result);
+				
 				for (Entry<String, Integer> e : result.entrySet()) {
 					String key = e.getKey();
 					Object value = e.getValue();
@@ -224,8 +228,48 @@ public class FormRequest1 extends JFrame {
 				}
 			}
 		});
-		btnSeeCoauthors.setBounds(430, 224, 145, 23);
+		btnSeeCoauthors.setBounds(430, 12, 145, 23);
 		contentPane.add(btnSeeCoauthors);
+		
+		JButton btnExportCsv = new JButton("Export CSV");
+		btnExportCsv.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(UISingleton.getInstance().getMapCoAuth() != null)
+				{
+					if(!tbCSV.getText().isEmpty())
+					{
+					CSVMaker.makeCSV("C:\\Users\\jbistoqu\\Desktop\\"+tbCSV.getText() +".csv", UISingleton.getInstance().getMapCoAuth());
+					tbCSV.setText("");
+					JOptionPane
+					.showMessageDialog(contentPane,
+							"Export ok !");
+					}
+					else
+					{
+						JOptionPane
+						.showMessageDialog(contentPane,
+								"Please enter a filename");
+					}
+				}
+				else
+				{
+					JOptionPane
+					.showMessageDialog(contentPane,
+							"No co-author to export");
+				}
+			}
+		});
+		btnExportCsv.setBounds(450, 270, 109, 23);
+		contentPane.add(btnExportCsv);
+		
+		JLabel lblFilename = new JLabel("Filename :");
+		lblFilename.setBounds(472, 214, 68, 14);
+		contentPane.add(lblFilename);
+		
+		tbCSV = new JTextField();
+		tbCSV.setBounds(430, 239, 145, 20);
+		contentPane.add(tbCSV);
+		tbCSV.setColumns(10);
 
 		/*
 		 * ListSelectionListener listSelectionListener = new

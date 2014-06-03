@@ -9,7 +9,7 @@ import java.util.HashMap;
 public class CSVMaker {
 	
 	public static void makeCSV(String filename, HashMap<String, Integer> listAuthors) {
-		File outputFile = new File(filename); 
+		File outputFile = new File(filename);
 		try {
 			FileWriter out = new FileWriter(outputFile);
 			
@@ -21,9 +21,8 @@ public class CSVMaker {
 			    out.write(',');
 			    out.write(value.toString());
 			    out.write('\n');
-			    
-			    out.close();
 			}
+			out.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
