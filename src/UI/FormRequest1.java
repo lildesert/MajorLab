@@ -9,6 +9,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.ListModel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
@@ -202,5 +204,19 @@ public class FormRequest1 extends JFrame {
 		cbType.setModel(new DefaultComboBoxModel(new String[] {"", "inproceedings", "article", "book", "incollection"}));
 		cbType.setBounds(216, 183, 155, 20);
 		contentPane.add(cbType);
+		
+		
+		ListSelectionListener listSelectionListener = new ListSelectionListener() {
+		      public void valueChanged(ListSelectionEvent listSelectionEvent) {
+		        
+		          JList list = (JList) listSelectionEvent.getSource();
+		          String s = list.getSelectedValue().toString().split("(")[0];
+		          UISingleton.getInstance().setCoAuthSelected(s);
+		          
+		          CoCoAuthor h = new CoCoAuthor();
+				  h.setVisible(true);
+		      }
+		    };
+		    lbCoAuthor.addListSelectionListener(listSelectionListener);
 	}
 }

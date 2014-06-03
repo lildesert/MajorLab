@@ -5,6 +5,7 @@ import java.io.File;
 public class UISingleton {
 
 	private File xmlFile;
+	private String coAuthSelected;
 
 	private UISingleton() {
 	}
@@ -24,5 +25,13 @@ public class UISingleton {
 
 	public void setXmlFile(File xmlFile) {
 		this.xmlFile = xmlFile;
+	}
+	
+	public String getCoAuthSelected() {
+		return coAuthSelected;
+	}
+
+	public void setCoAuthSelected(String coAuthSelected) {
+		this.coAuthSelected = coAuthSelected;
 	}
 }
