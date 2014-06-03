@@ -89,47 +89,46 @@ public class FormRequest1 extends JFrame {
 		btnLancerRequte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dlmCoAuth.clear();
-				
+
 				String authSelected = lbAuthor.getSelectedValue().toString();
-				
+
 				Queries queries = new Queries();
 				Map<String, Integer> result = new HashMap<String, Integer>();
-				
-				if(!tbYearStart.getText().isEmpty() && !tbYearEnd.getText().isEmpty())
-				{
-					if(cbType.getSelectedIndex() == 0)
-					{
-						result = queries.getNumberOfAuthorAppearancesPerYear("", authSelected, tbYearStart.getText(), tbYearEnd.getText());
-					}
-					else
-					{
-						JOptionPane.showMessageDialog(contentPane,
-								"You have to choose between Year and Publication type params");
+
+				if (!tbYearStart.getText().isEmpty()
+						&& !tbYearEnd.getText().isEmpty()) {
+					if (cbType.getSelectedIndex() == 0) {
+						result = queries.getNumberOfAuthorAppearancesPerYear(
+								"", authSelected, tbYearStart.getText(),
+								tbYearEnd.getText());
+					} else {
+						JOptionPane
+								.showMessageDialog(contentPane,
+										"You have to choose between Year and Publication type params");
 						tbYearEnd.setText("");
 						tbYearStart.setText("");
 						cbType.setSelectedIndex(0);
 					}
-				}
-				else if(cbType.getSelectedIndex() != 0)
-				{
-					if(tbYearStart.getText().isEmpty() && tbYearEnd.getText().isEmpty())
-					{
-						result = queries.getNumberOfAuthorAppearancesPerPublicationType("", authSelected, cbType.getSelectedItem().toString());
-					}
-					else
-					{
-						JOptionPane.showMessageDialog(contentPane,
-								"You have to choose between Year and Publication type params");
+				} else if (cbType.getSelectedIndex() != 0) {
+					if (tbYearStart.getText().isEmpty()
+							&& tbYearEnd.getText().isEmpty()) {
+						result = queries
+								.getNumberOfAuthorAppearancesPerPublicationType(
+										"", authSelected, cbType
+												.getSelectedItem().toString());
+					} else {
+						JOptionPane
+								.showMessageDialog(contentPane,
+										"You have to choose between Year and Publication type params");
 						tbYearEnd.setText("");
 						tbYearStart.setText("");
 						cbType.setSelectedIndex(0);
 					}
+				} else {
+					result = queries.getNumberOfAuthorAppearances("",
+							authSelected);
 				}
-				else
-				{
-					result = queries.getNumberOfAuthorAppearances("", authSelected);
-				}			
-				
+
 				for (Entry<String, Integer> e : result.entrySet()) {
 					String key = e.getKey();
 					Object value = e.getValue();
@@ -154,69 +153,93 @@ public class FormRequest1 extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(23, 56, 145, 147);
 		contentPane.add(scrollPane);
-		
-				lbAuthor = new JList(authList.toArray());
-				scrollPane.setViewportView(lbAuthor);
-				lbAuthor.setValueIsAdjusting(true);
-		
+
+		lbAuthor = new JList(authList.toArray());
+		scrollPane.setViewportView(lbAuthor);
+		lbAuthor.setValueIsAdjusting(true);
+
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(355, 181, -78, -56);
 		contentPane.add(scrollPane_1);
-		
+
 		JScrollPane scrollPane_2 = new JScrollPane();
 		scrollPane_2.setBounds(430, 56, 145, 147);
 		contentPane.add(scrollPane_2);
 		lbCoAuthor = new JList(dlmCoAuth);
 		scrollPane_2.setViewportView(lbCoAuthor);
-		
+
 		JLabel lblParamtres = new JLabel("Params :");
 		lblParamtres.setBounds(194, 56, 109, 32);
 		contentPane.add(lblParamtres);
-		
+
 		JLabel lblAnne = new JLabel("Years");
 		lblAnne.setBounds(278, 88, 104, 14);
 		contentPane.add(lblAnne);
-		
+
 		tbYearStart = new JTextField();
 		tbYearStart.setBounds(178, 125, 86, 20);
 		contentPane.add(tbYearStart);
 		tbYearStart.setColumns(10);
-		
+
 		tbYearEnd = new JTextField();
 		tbYearEnd.setText("");
 		tbYearEnd.setBounds(334, 125, 86, 20);
 		contentPane.add(tbYearEnd);
 		tbYearEnd.setColumns(10);
-		
+
 		JLabel lblStartYear = new JLabel("Start year :");
 		lblStartYear.setBounds(178, 109, 86, 14);
 		contentPane.add(lblStartYear);
-		
+
 		JLabel lblEndYear = new JLabel("End year :");
 		lblEndYear.setBounds(334, 109, 86, 14);
 		contentPane.add(lblEndYear);
-		
+
 		JLabel lblType = new JLabel("Publication type");
 		lblType.setBounds(249, 156, 107, 14);
 		contentPane.add(lblType);
-		
+
 		cbType = new JComboBox();
-		cbType.setModel(new DefaultComboBoxModel(new String[] {"", "inproceedings", "article", "book", "incollection"}));
+		cbType.setModel(new DefaultComboBoxModel(new String[] { "",
+				"inproceedings", "article", "book", "incollection" }));
 		cbType.setBounds(216, 183, 155, 20);
 		contentPane.add(cbType);
-		
-		
-		ListSelectionListener listSelectionListener = new ListSelectionListener() {
-		      public void valueChanged(ListSelectionEvent listSelectionEvent) {
-		        
-		          JList list = (JList) listSelectionEvent.getSource();
-		          String s = list.getSelectedValue().toString().split("(")[0];
-		          UISingleton.getInstance().setCoAuthSelected(s);
-		          
-		          CoCoAuthor h = new CoCoAuthor();
-				  h.setVisible(true);
-		      }
-		    };
-		    lbCoAuthor.addListSelectionListener(listSelectionListener);
+
+		JButton btnSeeCoauthors = new JButton("See co-authors");
+		btnSeeCoauthors.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					String s = lbCoAuthor.getSelectedValue().toString()
+							.split(" \\(")[0];
+					UISingleton.getInstance().setCoAuthSelected(s);
+
+					System.out.println("here");
+
+					CoCoAuthor c = new CoCoAuthor();
+					c.setVisible(true);
+				} catch (NullPointerException e) {
+					JOptionPane
+					.showMessageDialog(contentPane,
+							"No co-author selected");
+				}
+			}
+		});
+		btnSeeCoauthors.setBounds(430, 224, 145, 23);
+		contentPane.add(btnSeeCoauthors);
+
+		/*
+		 * ListSelectionListener listSelectionListener = new
+		 * ListSelectionListener() { public void valueChanged(ListSelectionEvent
+		 * listSelectionEvent) {
+		 * 
+		 * JList list = (JList) listSelectionEvent.getSource(); String s =
+		 * list.getSelectedValue().toString().split(" \\(")[0];
+		 * UISingleton.getInstance().setCoAuthSelected(s);
+		 * 
+		 * System.out.println("here");
+		 * 
+		 * CoCoAuthor c = new CoCoAuthor(); c.setVisible(true); } };
+		 * lbCoAuthor.addListSelectionListener(listSelectionListener);
+		 */
 	}
 }
